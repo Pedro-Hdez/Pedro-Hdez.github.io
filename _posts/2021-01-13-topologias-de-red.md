@@ -45,8 +45,10 @@ fı́sica de los dispositivos.[[4]](#bibliografia)
 
 ## Topologías de Red
 
-### Malla
-pues si la malla es asi
+### Topología Punto a Punto
+| ![space-1.jpg](../assets/images/topologias/punto_a_punto.png) | 
+|:--:| 
+| Figura 1. Topología punto a punto [[5]](#bibliografia)|
 
 ## Bibliografia
 
