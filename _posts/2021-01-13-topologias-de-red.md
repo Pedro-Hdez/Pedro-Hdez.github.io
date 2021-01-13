@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Topologías"
+title:  "Topologías de redes"
 author: Pedro Hernández
 categories: [ Redes de computadoras ]
 description: "En esta investigación se exponen las diferentes topologías de red, sus diseños, estándares, funcionamiento, así como sus ventajas y desventajas"
