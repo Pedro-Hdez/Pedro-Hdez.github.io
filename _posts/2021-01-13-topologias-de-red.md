@@ -8,12 +8,13 @@ beforetoc: "La distribución de los elementos (conexiones, nodos)
 de una red se conoce como su topologı́a; dicha distribución es un factor importante
 cuyo impacto recae directamente en el rendimiento de los sistemas."
 toc: true
+bibliography: assets/citations/topologias-de-red.bib
 ---
 
 ## Introducción
 Una red de computadoras es un conjunto de computadoras autónomas
 interconectadas por un medio. Decimos que dos computadoras están interco-
-nectadas si son capaces de intercambiar información.[^fn1]
+nectadas si son capaces de intercambiar información.[@R-base]
 Gracias al rápido desarrollo de la Internet, y la computación en general, las redes
 de computadoras han impactado profundamente en casi todos los aspectos de nues-
 tra vida cotidiana y la industria. Todos los sistemas tienen sus propias prioridades
