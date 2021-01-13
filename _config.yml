@@ -42,7 +42,7 @@ paginate: 6
 paginate_path: /page:num/
     
 # Other
-markdown: pandoc
+markdown: kramdown
 
 kramdown:
   input: GFM
