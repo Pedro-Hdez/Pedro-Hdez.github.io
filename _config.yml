@@ -1,7 +1,7 @@
 # Site
-name: "Mediumish"
-title: "Mediumish"
-description: "Jekyll template, Medium styled, free for bloggers."
+name: "CS Blog"
+title: "CS Blog"
+description: "¡Hola! Soy Pedro Hernández y te doy la bienvenida a CS Blog, sitio en donde publico proyectos, investigaciones y tutoriales de programación."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 google_analytics: 'UA-46278016-1'
