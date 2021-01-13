@@ -27,6 +27,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
+  - jekyll-pandoc
     
 # Archives
 jekyll-archives:
@@ -41,7 +42,7 @@ paginate: 6
 paginate_path: /page:num/
     
 # Other
-markdown: kramdown
+markdown: pandoc
 
 kramdown:
   input: GFM
