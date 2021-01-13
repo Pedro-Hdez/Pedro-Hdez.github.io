@@ -1,7 +1,7 @@
 # Site
 name: "CS Blog"
 title: "CS Blog"
-description: "¡Hola! Soy Pedro Hernández y te doy la bienvenida a mi blog en donde encontrarás proyectos, investigaciones y tutoriales de ciencias de la computación"
+description: "Proyectos, investigaciones y tutoriales de ciencias de la computación"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/favicon.png'
 google_analytics: 'UA-46278016-1'
