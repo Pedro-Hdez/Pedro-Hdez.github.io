@@ -244,7 +244,7 @@ Más que una topologı́a de red, este es un esquema de cableado en donde múlti
 En este trabajo se han presentado las topologı́as básicas de redes de computadora. Cada sistema cuenta con sus propios requerimientos de privacidad, espacio, recursos económicos y de hardware, etc; por ello, es importante conocer las diferentes topologı́as de red pues éstas representan uno de los pilares fundamentales en el diseño de redes y su comprensión nos permitirá decidir cuál distribución es la que mejor se ajusta a las necesidades establecidas.
 
 
-## Bibliografia
+## Referencias
 
 <p id="1">[1] Tanenbaum, A., (2003). Computer Networks, Fourth edition, Upper Saddle River, Estados Unidos de América, Prentice Hall.</p>
 
