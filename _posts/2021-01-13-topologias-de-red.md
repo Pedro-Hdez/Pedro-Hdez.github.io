@@ -47,11 +47,10 @@ fı́sica de los dispositivos.[[4]](#bibliografia)
 
 ### Topología Punto a Punto
 
-
-| ![space-1.jpg](../assets/images/topologias/punto_a_punto.png) | 
-|:--:| 
-| Figura 1. Topología punto a punto [[5]](#bibliografia) |
-
+<div style="text-align:center">
+    <img src="../assets/images/topologias/punto_a_punto.png" />
+    <p>Figura 1. Topología punto a punto <a href="#bibliografia">[5]</a></p>
+</div>
 
 ## Bibliografia
 
