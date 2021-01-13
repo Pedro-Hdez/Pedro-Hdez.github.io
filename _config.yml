@@ -3,7 +3,7 @@ name: "CS Blog"
 title: "CS Blog"
 description: "¡Hola! Soy Pedro Hernández y te doy la bienvenida a mi blog en donde encontrarás proyectos, investigaciones y tutoriales de ciencias de la computación"
 logo: 'assets/images/logo.png'
-favicon: 'assets/images/icono.png'
+favicon: 'assets/images/favicon.png'
 google_analytics: 'UA-46278016-1'
 disqus: 'demowebsite'
 mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
