@@ -188,8 +188,30 @@ La topologı́a malla puede catalogarse en dos dependiendo del número de interc
   * La complejidad de la red puede llegar a ser grande debido al número de interconexiones.
   * Alta latencia y bajo ancho de banda.
   
+### Topología Árbol
+<div style="text-align:center">
+    <img src="../assets/images/topologias/arbol.png" />
+    <p>Figura 7. Topología árbol <a href="#bibliografia">[5]</a></p>
+</div>
 
+* **Estándar:** IEEE 802.15.4 (Árbol de clusters)
 
+Las redes en árbol son jerárquicas. En este caso, existe un nodo central llamado raı́z (el nivel más alto en la jerarquı́a). Éste se conecta con uno o más nodos que se encuentran un nivel más abajo de la jerarquı́a, es decir, en el segundo nivel; mientras que cada nodo del segundo nivel está conectado a su vez con uno o más nodos pertenecientes al tercer nivel y ası́ sucesivamente. Un dato importante es que el nodo raı́z es el único que no cuenta con un nodo padre; además sólo existe un “camino” entre dos nodos.[[2,4]](#bibliografia) En esta topologı́a, el medio de comunicación es compartido (de manera similar que en las redes bus) por lo que la información puede propagarse hacia todas las ramificaciones de un nodo. En este sentido, podemos decir que la topologı́a árbol es una especie de combinación de redes en estrella.
+
+* **Ventajas [[3,4]](#bibliografia)**
+  * Fáciles de mantener.
+  * Fácil detección de fallas.
+  * La expansión de los nodos es posible y sencilla.
+  * Es una extensión de las topologı́as bus y estrella.
+  * Bajo consumo de energı́a por parte de los nodos hoja.
+  * Pueden cubrir áreas extensas.
+  * Complejidad intermedia. El rerouting es necesario cuando un nodo en el árbol muere.
+* **Desventajas [[3,4]](#bibliografia)**
+  * Confiabilidad baja. Si un nodo falla, se necesita un rerouting.
+  * Alta latencia y bajo ancho de banda.
+  * Consumo asimétrico de energı́a. Los nodos hojas consumen mucho menos que los demás nodos.
+  * Se necesitan muchas interfaces.
+  * Es centralizada. Si falla el nodo raı́z, falla toda la red.
 
 
 
