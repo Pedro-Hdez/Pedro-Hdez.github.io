@@ -4,9 +4,9 @@ title:  "Topologías"
 author: Pedro Hernández
 categories: [ Redes de computadoras ]
 description: "En esta investigación se exponen las diferentes topologías de red, sus diseños, estándares, funcionamiento, así como sus ventajas y desventajas"
-beforetoc: La distribución de los elementos (conexiones, nodos)
+beforetoc: "La distribución de los elementos (conexiones, nodos)
 de una red se conoce como su topologı́a; dicha distribución es un factor importante
-cuyo impacto recae directamente en el rendimiento de los sistemas.
+cuyo impacto recae directamente en el rendimiento de los sistemas."
 toc: true
 ---
 
