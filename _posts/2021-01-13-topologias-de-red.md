@@ -12,8 +12,7 @@ bibliography: assets/citations/topologias-de-red.bib
 ---
 
 ## Introducción
-Una ***red de computadoras*** es un ***conjunto de computadoras autónomas interconectadas por un medio.*** Decimos que dos computadoras están interco-
-nectadas si son capaces de intercambiar información.<a href="#1">[1]</a>
+Una ***red de computadoras*** es un ***conjunto de computadoras autónomas interconectadas por un medio.*** Decimos que dos computadoras están interconectadas si son capaces de intercambiar información.<a href="#1">[1]</a>
 
 
 Gracias al rápido desarrollo de la Internet, y la computación en general, las redes
@@ -29,19 +28,15 @@ naturaleza de los problemas es racional pensar en diferentes formas de soluciona
 Uno de los factores de las redes de computadoras que impacta directamente en
 el desempeño de los sistemas, y que es imposible dejar pasar por alto al momento
 de diseñarlas, son las topologı́as. Existen ocho topologı́as básicas: Punto a punto,
-Bus, Estrella, Anillo, Malla, Árbol, Hı́brida y Daisy Chain. <a href="#2">[2]</a>
+Bus, Estrella, Anillo, Malla, Árbol, Hı́brida y Daisy Chain. <a href="#2">[2]</a> En este trabajo, se exponen las diferentes topologı́as de red, sus diseños, estándares, funcionamiento, ası́ como sus ventajas y desventajas.
 
 ## Definición de Topología de Red
 
-El término ***topologı́a de red*** se refiere a la **forma en la que las computadoras o estaciones de trabajo (nodos) están interconectadas en la red**
+El término ***topologı́a de red*** se refiere a la **forma en la que las computadoras o estaciones de trabajo (nodos) están interconectadas en la red.**
 <a href="#3">[3]</a>
 
 Podemos hablar de dos tipos de topologı́a: fı́sica y lógica. La primera se refiere
-al diseño fı́sico de la red, es decir, a la manera en la que los dispositivos están fı́sica-
-mente conectados a través de alambres y cables 1 o enlaces directos de comunicación
-inalámbrica 2 . En cambio, la topologı́a lógica de una red se refiere a la manera en
-la que la información fluye de un nodo a otro sin tener en cuenta la interconexión
-fı́sica de los dispositivos.<a href="#4">[4]</a>
+al diseño fı́sico de la red, es decir, a la manera en la que los dispositivos están fı́sicamente conectados a través de alambres y cables, o enlaces directos de comunicación inalámbrica. En cambio, la topologı́a lógica de una red se refiere a la manera en la que la información fluye de un nodo a otro sin tener en cuenta la interconexión fı́sica de los dispositivos.<a href="#4">[4]</a>
 
 ## Topologías de Red
 
@@ -56,8 +51,7 @@ fı́sica de los dispositivos.<a href="#4">[4]</a>
 
 También llamada *P2P*, esta es la topologı́a más simple. Consta únicamente de
 dos dispositivos conectados directamente el uno con el otro <a href="#4">[4]</a>. Cada dispositivo
-puede ser emisor o receptor en momentos diferentes; es decir, los roles son intercam-
-biables entre ellos.
+puede ser emisor o receptor en momentos diferentes; es decir, los roles son intercambiables entre ellos.
 
 * **Ventajas**
   * Muy fáciles de configurar.
@@ -91,7 +85,7 @@ ambos sentidos usando un cables bidireccionales [[2,6]](#bibliografia)
   * Barato debido a la poca cantidad de cables necesarios para conectar los nodos.
   * Conveniente y fácil de usar para redes pequeñas o temporales.
 * **Desventajas [[3,6]](#bibliografia)**
-  * Mucho tráfico de información puede ralentizar el desempeño de la red porque solo cuenta con un canal de comunicación.
+  * Mucho tráfico de información puede ralentizar el desempeño de la red porque sólo cuenta con un canal de comunicación.
   * Dificultad para administrar porque se necesita un mecanismo de arbitraje
 para evitar o minimizar colisiones de información cuando varios equipos
 transmiten al mismo tiempo.
@@ -101,13 +95,13 @@ transmiten al mismo tiempo.
 ### Topología Estrella
 <div style="text-align:center">
     <img src="../assets/images/topologias/estrella.png" />
-    <p>Figura 3. Topología estrella <a href="#5">[5]</a></a></p>
+    <p>Figura 3. Topología estrella <a href="#5">[5]</a></p>
 </div>
 
 * **Estándar:** IEEE 802.15.4
 
 La topologı́a estrella también es muy usada en redes LAN. En este caso, todos
-los equipos están conectados a un mismo dispositivo central 3 llamado nodo maestro
+los equipos están conectados a un mismo dispositivo central llamado nodo maestro
 que actúa como servidor; las demás computadoras se conocen como nodos esclavos
 y toman el rol de clientes. Es importante señalar que no existen interconexiones
 entre los nodos esclavos, por lo tanto, únicamente pueden comunicarse con el nodo
@@ -117,7 +111,7 @@ través del dispositivo central. [[2,4]](#bibliografia)
 * **Ventajas [[3,4]](#bibliografia)**
   * Estructura simple.
   * Baja latencia y ancho de banda alto.
-  * Bajo consumo de energı́a por parte de los nodos esclavos
+  * Bajo consumo de energı́a por parte de los nodos esclavos.
   * Sistema centralizado.
   * Facilidad para detectar fallas porque cada nodo esclavo cuenta con exactamente una interfaz de comunicación.
   * Es fácil agregar nodos esclavos a la red.
@@ -137,18 +131,18 @@ nodos esclavos.
 
 * **Estándar:** IEEE 802.5
 
-En esta topologı́a cada nodo se conecta con exactamente otros dos nodos ( anterior y el siguiente) mediante una conexión punto a punto. <a href="#3">[3]</a> De esta manera, cada dispositivo tiene una única conexión de entrada y otra de salida. Una caracterı́stica importante es que la información fluye en un solo sentido, por lo que es necesario que los datos pasen a través de varios nodos hasta llegar a su destino. Existen algunas variaciones como la topologı́a de anillo doble en donde la comunicación es bidireccional.
+En esta topologı́a cada nodo se conecta con exactamente otros dos nodos ( anterior y el siguiente) mediante una conexión punto a punto. <a href="#3">[3]</a> De esta manera, cada dispositivo tiene una única conexión de entrada y otra de salida. Una caracterı́stica importante es que la información fluye en un solo sentido, por lo que es necesario que los datos pasen a través de varios nodos hasta llegar a su destino. Existen algunas variantes como la topologı́a de anillo doble en donde la comunicación es bidireccional.
 
 * **Ventajas <a href="#3">[3]</a>**
   * Presenta un mejor desempeño que la topologı́a bus.
   * El funcionamiento no depende de un solo nodo como en la topologı́a estrella.
   * Es relativamente fácil de configurar ya que todas las interconexiones son punto a punto.
-  * Si se utilizan pocos nodos su desempeño es alto
-  * Si se utilizan muchos nodos con cargas de trabajo similares también pre- senta un buen desempeño
+  * Si se utilizan pocos nodos su desempeño es alto.
+  * Si se utilizan muchos nodos con cargas de trabajo similares también presenta un buen desempeño.
   * Es fácil de extender.
 * **Desventajas**
-  * Aunque es fácil de extender, el hecho de agregar, remover o incluso reaco- modar los nodos puede afectar la red completa
-  * Es un poco más difı́cil de configurar que una topologı́a bus o estrella, en especial cuando el número de nodos es muy grande
+  * Aunque es fácil de extender, el hecho de agregar, remover o incluso reacomodar los nodos puede afectar la red completa.
+  * Es un poco más difı́cil de configurar que una topologı́a bus o estrella, en especial cuando el número de nodos es muy grande.
   * La información debe pasar por varios equipos, por lo que no es muy recomendable si la red debe contar con un nivel considerable de privacidad.
 
 ### Topología Malla
@@ -177,8 +171,8 @@ La topologı́a malla puede catalogarse en dos dependiendo del número de interc
 
 * **Ventajas [[2,3,4]](#bibliografia)**
   * Comunicación sencilla (punto a punto).
-  * Mayor privacidad. La información no necesariamente debe viajar por to- dos los nodos para llegar a su destino.
-  * Alta tolerancia a fallas gracias a su redundancia y su control descentra- lizado. Si un nodo presenta problemas, la información puede llegar a su destino por medio de una ruta alterna.
+  * Mayor privacidad. La información no necesariamente debe viajar por todos los nodos para llegar a su destino.
+  * Alta tolerancia a fallas gracias a su redundancia y su control descentralizado. Si un nodo presenta problemas, la información puede llegar a su destino por medio de una ruta alterna.
   * Con una malla parcial se puede implementar cierto grado de redundancia sin la necesidad de interconectar todos los nodos.
   * Puede cubrir áreas grandes.
   * El consumo de energı́a de los nodos puede balancearse.
@@ -221,7 +215,7 @@ Las redes en árbol son jerárquicas. En este caso, existe un nodo central llama
 
 * **Estándar:** Sin estándar
 
-Una topologı́a hı́brida es la inte ración de dos o más topologı́as diferentes. Esta combinación se realiza de acuerdo a los requerimientos de la red. <a href="#7">[7]</a>
+Una topologı́a hı́brida es la integración de dos o más topologı́as diferentes. Esta combinación se realiza de acuerdo a los requerimientos de la red. <a href="#7">[7]</a>
 
 * **Ventajas <a href="#7">[7]</a>**
   * Tolerancia a fallas. La parte en la que se detecta la falla puede aislarse y corregirse sin interferir con el funcionamiento de la red completa.
@@ -231,7 +225,7 @@ Una topologı́a hı́brida es la inte ración de dos o más topologı́as difer
 * **Desventajas <a href="#7">[7]</a>**
   * Complejidad en el diseño. Al tratarse de una combinación de topologı́as es difı́cil diseñarlas y configurarlas de manera eficiente.
   * Hubs costosos. Los precios de los hubs usados para conectar dos redes diferentes son elevados.
-  * Mantenimiento costoso. Como las arquitecturas hı́bridas comúnmente se construyen a grande escala, requieren de mucho cableado, sistemas de refrigeración y dispositivos de red sofisticados.
+  * Mantenimiento costoso. Como las arquitecturas hı́bridas comúnmente se construyen a gran escala, requieren de mucho cableado, sistemas de refrigeración y dispositivos de red sofisticados.
 
 ### Daisy Chaining
 <div style="text-align:center">
@@ -245,7 +239,7 @@ Más que una topologı́a de red, este es un esquema de cableado en donde múlti
 
 
 ## Conclusión
-En este trabajo se han presentado las topologı́as básicas de redes de computadora. Cada sistema cuenta con sus propios requerimientos de privacidad, espacio, recursos económicos y de hardware, etc; por ello, es importante conocer las diferen- tes topologı́as de red pues éstas representan uno de los pilares fundamentales en el diseño de redes y su comprensión nos permitirá decidir cuál distribución es la que mejor se ajusta a las necesidades establecidas.
+En este trabajo se han presentado las topologı́as básicas de redes de computadora. Cada sistema cuenta con sus propios requerimientos de privacidad, espacio, recursos económicos y de hardware, etc; por ello, es importante conocer las diferentes topologı́as de red pues éstas representan uno de los pilares fundamentales en el diseño de redes y su comprensión nos permitirá decidir cuál distribución es la que mejor se ajusta a las necesidades establecidas.
 
 
 ## Bibliografia
