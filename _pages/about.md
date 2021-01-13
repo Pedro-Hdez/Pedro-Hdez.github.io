@@ -2,7 +2,7 @@
 layout: page
 title: Acerca de mí
 permalink: /about
-comments: true
+image: assets/images/yo.png
 ---
 
 
