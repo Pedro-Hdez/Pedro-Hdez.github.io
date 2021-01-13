@@ -5,14 +5,8 @@ permalink: /about
 ---
 
 <div class="container text-center">
-		<span><img src="assets/images/yo.png" ></span>
-        <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
-            <div class="mc-field-group">
-            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
-            <input type="submit" value="Subscribe" name="subscribe" class="heart">
-            </div>
-        </form>
-	</div>
+    <span><img src="assets/images/yo.png" width="10%" height="10%"></span>
+</div>
 Soy Pedro Hernández, estudiante del último semestre de la Licenciatura en Ciencias de la Computación en la Universidad de Sonora. CS Blog
 nace de la idea de crear un portafolio para mostrar evidencias de los conocimientos que he adquirido a lo largo de mi trayectoria universitaria. Si
 algún material presente en este blog te resulta útil ¡no dudes en usarlo!.
