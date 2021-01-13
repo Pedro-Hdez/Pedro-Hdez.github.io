@@ -172,7 +172,7 @@ En esta topologı́a cada nodo se conecta con exactamente otros dos nodos ( ante
 
 * **Estándar:** IEEE 802.15
 
-La topologı́a malla puede catalogarse en dos dependiendo del número de interconexiones (punto a punto) entre los dispositivos. En una malla completa cada nodo se encuentra interconectado con todos los demás, resultando en un total de \$$\frac{n(n-1)}{2}$$ conexiones.[[2]](#bibliografia) Por otro lado, en una malla parcial, algunos dispositivos no necesariamente se encontrarán interconectados con los restantes.
+La topologı́a malla puede catalogarse en dos dependiendo del número de interconexiones (punto a punto) entre los dispositivos. En una malla completa cada nodo se encuentra interconectado con todos los demás, resultando en un total de $$\frac{n(n-1)}{2}$$ conexiones.[[2]](#bibliografia) Por otro lado, en una malla parcial, algunos dispositivos no necesariamente se encontrarán interconectados con los restantes.
 
 
 * **Ventajas [[2,3,4]](#bibliografia)**
