@@ -10,7 +10,7 @@ toc: true
 
 ## Introducción
 
-Las técnicas de Spread Spectrum (espectro ensanchado) son método de modulación que se aplican a señales digitales, la idea fundamental es transmitir intencionalmente con un ancho de banda mucho más alto que el necesario. Sus principales ventajas son la resistencia a las interferencias y al ruido. Es importante minimizar estos problemas ya que pueden comprometer la velocidad de transmisión y la seguridad de los datos. En este trabajo se presentan dos procesos: Direct Sequence Spread Spectrum (DSSS) y Frequency Hopping Spread Spectrum (FHSS).
+Las técnicas de Spread Spectrum (espectro ensanchado) son método de modulación que se aplican a señales digitales, la idea fundamental es transmitir intencionalmente con un ancho de banda mucho más alto que el necesario. Sus principales ventajas son la resistencia a las interferencias y al ruido. Es importante minimizar estos problemas ya que pueden comprometer la velocidad de transmisión y la seguridad de los datos. En este post se presentan dos procesos: Direct Sequence Spread Spectrum (DSSS) y Frequency Hopping Spread Spectrum (FHSS).
 
 ## Frequency Hopping Spread Spectrum
 

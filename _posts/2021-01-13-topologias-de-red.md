@@ -246,28 +246,25 @@ En este trabajo se han presentado las topologı́as básicas de redes de computa
 
 ## Referencias
 
-<p id="1">[1] Tanenbaum, A., (2003). Computer Networks, Fourth edition, Upper Saddle River, Estados Unidos de América, Prentice Hall.</p>
+<p id="1">[1] Tanenbaum, A., (2003). <i>Computer Networks, Fourth edition</i>, Upper Saddle River, Estados Unidos de América, Prentice Hall.</p>
 
-<p id="2">[2] Liu, Q. y Liu, Q., (2014) A Study on Topology in Computer Network 2014 7th
+<p id="2">[2] Liu, Q. y Liu, Q., (2014) <i>A Study on Topology in Computer Networks</i> 2014 7th
 International Conference on Intelligent Computation Technology and Automa-
 tion, 45-48.</p>
 
-<p id="3">[3] Bisht, N., y Singh, S., (2015) ANALYTICAL STUDY OF DIFFERENT NET-
-WORK TOPOLOGIES International Research Journal of Engineering and Tech-
+<p id="3">[3] Bisht, N., y Singh, S., (2015) <i>ANALYTICAL STUDY OF DIFFERENT NETWORK TOPOLOGIES</i> International Research Journal of Engineering and Tech-
 nology (IRJET), 02(01), 88-90.</p>
 
 <p id="4">[4] Espina J., Falck T., Panousopoulou A., Schmitt L., Mülhens O., y Yang
-GZ., (2014) Network Topologies, Communication Protocols, and Stan-
-dards. In: Yang GZ. (eds) Body Sensor Networks. Springer, London.
+GZ., (2014) <i>Network Topologies, Communication Protocols, and Standards</i>. In: Yang GZ. (eds) Body Sensor Networks. Springer, London.
 <a href="https://doi.org/10.1007/978-1-4471-6374-9_5">https://doi.org/10.1007/978-1-4471-6374-9_5</a></p>
 
-<p id="5">[5] Network Topologies, (2015), Types of network topologies [Imagen], LMN
-Techno Hub Blogs, <a href="https://lmntechnohub.blogspot.com/2015/01/network-topology.html">https://lmntechnohub.blogspot.com/2015/01/network-topology.html</a></p>
+<p id="5">[5] Network Topologies, (2015), <i>Types of network topologies</i> [Imagen], LMN Techno Hub Blogs, <a href="https://lmntechnohub.blogspot.com/2015/01/network-topology.html">https://lmntechnohub.blogspot.com/2015/01/network-topology.html</a></p>
 
-<p id="6">[6] Rivera, H., Orellana, I., y Recarte, J., (2017). Clasificación de las redes., <a href="https://clasificaciondelasredesblog.wordpress.com/seg<un-su-topologia/">https://clasificaciondelasredesblog.wordpress.com/segun-su-topologia/</a></p>
+<p id="6">[6] Rivera, H., Orellana, I., y Recarte, J., (2017). <i>Clasificación de las redes</i>. <a href="https://clasificaciondelasredesblog.wordpress.com/seg<un-su-topologia/">https://clasificaciondelasredesblog.wordpress.com/segun-su-topologia/</a></p>
 
-<p id="7">[7] Notas de topologı́as hı́bridas. MIT, (s.f), <a href="https://blossoms.mit.edu/sites/default/files/video/download/Notes-on-Hybrid-topology.pdf">https://blossoms.mit.edu/sites/default/files/video/download/Notes-on-Hybrid-topology.pdf</a></p>
+<p id="7">[7] <i>Notas de topologı́as hı́bridas</i>. MIT, (s.f), <a href="https://blossoms.mit.edu/sites/default/files/video/download/Notes-on-Hybrid-topology.pdf">https://blossoms.mit.edu/sites/default/files/video/download/Notes-on-Hybrid-topology.pdf</a></p>
 
-<p id="8">[8] Daisy Chain Network, (s.f), <a href="https://www.educba.com/daisy-chain-network/">https://www.educba.com/daisy-chain-network/></a></p>
+<p id="8">[8] <i>Daisy Chain Network</i>, (s.f), <a href="https://www.educba.com/daisy-chain-network/">https://www.educba.com/daisy-chain-network/></a></p>
 
 
