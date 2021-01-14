@@ -10,7 +10,6 @@ beforetoc: "La distribución de los elementos (conexiones, nodos)
 de una red se conoce como su topologı́a; dicha distribución es un factor importante
 cuyo impacto recae directamente en el rendimiento de los sistemas."
 toc: true
-bibliography: assets/citations/topologias-de-red.bib
 ---
 
 ## Introducción
