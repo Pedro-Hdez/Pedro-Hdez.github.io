@@ -117,7 +117,7 @@ acceso al medio.
 #### PHY alternativa de onda milimétrica
 
 Desarrollo de una PHY basada en ondas milimétricas (57-64 GHz de banda no
-regulada). Permite una coezistencia muy alta con todos los sitemas de microondas
+regulada). Permite una coexistencia muy alta con todos los sitemas de microondas
 de 802.15 con velocidades mayores a 3 Gbps.
 
 ### WPAN de Baja Velociadad / ZigBee
@@ -142,8 +142,7 @@ flexibilidad en el uso de claves de seguridad y considera nuevos rangos de frecu
 
 ### Bluetooth
 
-Se basa en un sistema de radio diseñado para corto alcance y dispositivos económi-
-cos. Su finalidad es reemplazar los cables para los periféricos de las computadoras.
+Se basa en un sistema de radio diseñado para corto alcance y dispositivos económicos. Su finalidad es reemplazar los cables para los periféricos de las computadoras.
 Dos topologı́as se definen en este estándar: Piconet y Scatternet.<a href="#6">[6]</a>
 
 #### Características de Piconet
@@ -161,8 +160,7 @@ mediante el reloj del maestro.
 punto controlada por el maestro.
 
 * Las transmisiones del maestro pueden ser punto a punto o punto a multipunto.
-Un dispositivo esclavo puede entrar en modo de espera para reducir los con-
-sumos de energı́a.
+Un dispositivo esclavo puede entrar en modo de espera para reducir los consumos de energı́a.
 
 #### Características de Scatternet
 
@@ -185,7 +183,7 @@ sólo puede tomar el rol de maestro en una sola.
 Utilizado en redes inalámbricas interiores de corto alcance y de alta velocidad.
 Su ancho de banda es de 110 hasta 480 Mbps, lo cual puede satisfacer la mayorı́a de
 las aplicaciones multimedia como el envı́o de audio y video en redes caseras; además,
-funciona como un reemplazo inalámbrico del bus serial como los USB 2.0 e IEEE
+funciona como un reemplazo inalámbrico del bus serial como los USB 2.0 e IEEE.
 
 
 ### ZigBee
@@ -214,11 +212,9 @@ red y se convertirá en coordinador PAN.
 que estén activas, esto se logra eligiendo un identificador PAN que no esté
 siendo usado por ninguna otra rd en el radio de influencia.
 
-* Una vez que un identificador PAN es elegido, el coordinador PAN puede per-
-mitir que otros dispositivos se unan a su red.
+* Una vez que un identificador PAN es elegido, el coordinador PAN puede permitir que otros dispositivos se unan a su red.
 
-* Un RFD se deberá conectar a una red árbol como nodo hoja porque única-
-mente puede estar asociado con un FFD a la vez.
+* Un RFD se deberá conectar a una red árbol como nodo hoja porque únicamente puede estar asociado con un FFD a la vez.
 
 * Cualquier FFD puede tomar el rol de coordinador y sincronizar los servicios
 con otros dispositivos o coordinadores.
@@ -235,7 +231,7 @@ en la PAN.
 
 El grupo de trabajo IEEE 802.16 es responsable del desarrollo de estándares y
 recomendaciones prácticas para dar soporte al desarrollo y uso de las redes inalámbricas de área metropolitana. En su versión del 2004, especifica una interfaz de radio
-aérea para sistemas de accerso inalámbrico de banda ancha incluyendo la capa de
+aérea para sistemas de acceso inalámbrico de banda ancha incluyendo la capa de
 control de acceso al medio y distintas especificaciones de capa fı́sica para sistemas
 BWA fijos (Broadband Wireless Access) soportando múltiples servicios. <a href="#7">[7]</a>
 
@@ -273,7 +269,7 @@ conectarse directamente a la BS.
 Con el estándar IEEE 802.16e del 2005 se buscaba dotar de movilidad a esta
 tecnologı́a. De este modo una misma red puede soportar accesos fijos, nomádas y
 móviles (velocidad de desplazamiento de hasta 180 km/hr). El objetivo más ambicioso de WiiMax es la interoperabilidad con la mayor parte de los estándares
-existentes. Esta tecnologı́a no entra en conflicto con Wi-Fi pues utilizan el mismo
+existentes. Esta tecnologı́a no entra en conflicto con Wifi pues utilizan el mismo
 protocolo LLC (Logical Link Control, estandarizado en IEEE 802.2) que la mayorı́a
 de redes LAN o WAN.
 
