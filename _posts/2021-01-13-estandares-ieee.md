@@ -2,7 +2,7 @@
 layout: post
 title:  "Estándares IEEE Para Redes Inalámbricas"
 author: pedro
-portada: assets/images/portadas/redes-de-computadoras.jpg
+portada: assets/images/portadas/redes-de-computadoras_investigacion.jpg
 categories: [ Redes de computadoras ]
 description: "En esta investigación se se revisarán algunos de los protocolos para redes inalámbricas del estándar IEEE 802."
 beforetoc: "En el ámbito de la tecnologı́a, IEEE es el organismo responsable del desarrollo y actualización de estándares y protocolos. Estos documentos son de vital importancia pues es la única manera de verificar los requisitos de funcionalidad, compatibilidad, interoperabilidad y confiabilidad de productos o servicios."

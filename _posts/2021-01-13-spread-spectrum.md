@@ -2,7 +2,7 @@
 layout: post
 title:  "Spread Spectrum"
 author: pedro
-portada: assets/images/portadas/redes-de-computadoras.jpg
+portada: assets/images/portadas/redes-de-computadoras_investigacion.jpg
 categories: [ Redes de computadoras ]
 description: "En esta investigación se analizan las técnicas de Spread Spectrum FHSS y DSS"
 toc: true

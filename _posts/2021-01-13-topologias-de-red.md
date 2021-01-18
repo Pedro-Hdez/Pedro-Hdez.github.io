@@ -2,7 +2,7 @@
 layout: post
 title:  "Topologías de redes"
 author: pedro
-portada: assets/images/portadas/redes-de-computadoras.jpg
+portada: assets/images/portadas/redes-de-computadoras_investigacion.jpg
 image: assets/images/topologias/portada.jpg
 categories: [ Redes de computadoras ]
 description: "En esta investigación se exponen las diferentes topologías de red, sus diseños, estándares, funcionamiento, así como sus ventajas y desventajas"
