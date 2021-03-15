@@ -27,15 +27,15 @@ Con esta información ya podemos implementar la lógica del juego, sin embargo, 
 En el siguiente diagrama de flujo se presenta la lógica del juego y la consideración de los escenarios que acabamos de mencionar.
 
 <div style="text-align:center">
-    <img style="width:70%; height:70%;" src="../assets/images/guessmynumber.png" />
+    <img style="width:100%; height:100%;" src="../assets/images/guessmynumber.png" />
     <p>Figura 1. Diagrama de flujo del juego "Adivina el número"</p>
 </div>
 
 <br><br><br>
-¡Excelente!. Ahora ya podemos programar el juego. A continuación, un vistazo a la interfaz principal. Si deseas jugarlo <a href="../web_projects/index.html">Haz click aquí.</a>
+¡Excelente!. Ahora ya podemos programar el juego. A continuación, un vistazo a la interfaz principal. Si deseas jugarlo <a href="../web_projects/guess_the_number/index.html">Haz click aquí.</a>
 <br>
 
 <div style="text-align:center">
-    <img style="width:70%; height:70%;" src="../assets/images/interfaz_guessmynumber.png" />
+    <img style="width:100%; height:100%;" src="../assets/images/interfaz_guessmynumber.png" />
     <p>Figura 1. Diagrama de flujo del juego "Adivina el número"</p>
 </div>
