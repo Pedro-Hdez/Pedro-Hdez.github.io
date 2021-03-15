@@ -5,7 +5,8 @@ author: pedro
 portada: assets/images/portadas/javascript_proyecto_es.png
 categories: [JavaScript]
 description: "En este post se muestra la implementación del juego 'Adivina el Número' en JavaScript."
-toc: true
+toc: false
+image: "assets/images/interfaz_guessmynumber.png"
 ---
 
 **Adivina el número** es un juego sencillo pero con el que puedes pasar un rato de diversión con tu familia y amigos (¡aún más si existe una apuesta de por medio!). A pesar de su simplicidad, si pensamos en él como un algoritmo a resolver, resulta en un problema divertido y con la suficiente lógica como para poner en práctica nuestros conocimientos de programación y JavaScript.
