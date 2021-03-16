@@ -5,7 +5,7 @@ autor: pedro
 portada: "../assets/images/portadas/redes_neuronales_es.png"
 categories: [Redes Neuronales]
 description: "Proyecto final de la materia de Redes Neuronales en donde se implementa una red neuronal convolucional para aumentar la resolución de imágenes degradadas."
-toc: false
+toc: true
 ---
 
 En este post comento el trabajo, experimentación y conclusiones de mi proyecto de **Redes Neuronales Convolucionales** para el curso de _Redes Neuronales_ impartido por el profesor Julio Waissman en la Universidad de Sonora.
