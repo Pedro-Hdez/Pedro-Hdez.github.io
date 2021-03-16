@@ -104,7 +104,7 @@ Si la imagen se degrada con un **factor 2**, el resultado será una imagen <ins>
 
 A continuación, voy a exponer los experimentos que realicé y sus resultados. En pocas palabras, entrené el modelo original y dos modelos con más capas ocultas; también probé estas redes con distintos epochs de entrenamiento y sobre diferentes conjuntos de imágenes.
 
-### MODELO ORIGINAL PRE-ENTRENADO CON 200 EPOCHS
+## MODELO ORIGINAL PRE-ENTRENADO CON 200 EPOCHS
 
 Antes de comenzar, quiero mostrarles cómo se ve el modelo SRCNN escrito en Python utilizando Keras. A partir de aquí, al hablar del **"Modelo Original"** nos estaremos refiriendo a la siguiente red:
 
@@ -142,7 +142,7 @@ Ahora, vamos a ver qué ocurre cuando este mismo modelo intenta reconstruir las 
 
 En este caso, ni siquiera se obtuvieron resultados decentes en las imágenes que formaban parte del conjunto de entrenamiento. **El SSIM aumenta en 1 y 3 por ciento aproximadamente**, mientras que las imágenes degradadas con factor 2 aumentaron hasta en, aproximadamente, un **7 por ciento**.
 
-### MODELO ORIGINAL PRE-ENTRENADO CON 200 EPOCHS + 400 EPOCHS DE ENTRENAMIENTO CON EL CONJUNTO _HomeObjects06_
+## MODELO ORIGINAL PRE-ENTRENADO CON 200 EPOCHS + 400 EPOCHS DE ENTRENAMIENTO CON EL CONJUNTO _HomeObjects06_
 
 Me di a la tarea de continuar el entrenamiento de este modelo pero ahora con el conjunto de imágenes que yo descargué por mi cuenta. Veamos los resultados con el mismo factor y los mismos ejemplos.
 
@@ -164,7 +164,7 @@ Aquí surge la siguiente pregunta: **¿Por qué los resultados son mejores si en
 
 La respuesta está en el **Error Cuadrado Medio**. Si observamos el MSE nos damos cuenta de que, en el caso anterior, el valor de esta métrica aumenta aproximadamente 10 en las últimas dos imágenes que no formaban parte del conjunto de entrenamiento. Después de los 400 epochs extra, ahora el MSE disminuye sustancialmente en todos los ejemplos. Recordemos que **si el MSE disminuye, significa que los valores de los pixeles en la imagen de salida de la red son similares a los valores que tienen los pixeles en la imagen original**; por lo tanto, la imagen completa va a lucir más parecida.
 
-### MODELO "MACHETERO"
+## MODELO "MACHETERO"
 
 A lo largo de mi formación académica, he escuchado muchas veces a mis compañeros / profesores / padres de familia llamar "macheteros" a aquellos alumnos que repasan una y otra vez las preguntas que saben estarán incluidas en el examen, memorizándolas a la perfección (y obteniendo notas muy altas) pero que son incapaces de resolver un problema similar porque no es cien por ciento igual a lo que ellos estudiaron por horas.
 
@@ -271,7 +271,7 @@ Finalmente, si analizamos el SSIM, de nuevo SRCNN le gana por mucho a la red que
 
 **CONCLUSIÓN DEL EXPERIMENTO**: SRCNN siempre fue mejor a pesar de su arquitectura tan sencilla. Mi modelo ofreció resultados de ensueño en el conjunto original de imagenes porque **fue entrenado con los mismos ejemplos que después iba a predecir**. Fue un error gravísimo de mi parte y esta práctica **se debe EVITAR a toda costa**. Como el nombre de esta sección lo dice, mi red es un modelo totalmente "machetero".
 
-# MODELO CON MÁS FILTROS CONVOLUCIONALES
+## MODELO CON MÁS FILTROS CONVOLUCIONALES
 
 Como último experimento, veamos el rendimiento que presentó el modelo original modificado cuando aumentamos el número de capas ocultas y filtros convolucionales. Llamemos a esta red **Modelo 2**.
 
