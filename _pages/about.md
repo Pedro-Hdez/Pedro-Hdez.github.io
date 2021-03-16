@@ -15,12 +15,13 @@ algún material presente en este blog te resulta útil ¡no dudes en usarlo!.
 
 Mis intereses profesionales son:
 
-* Ciencia de Datos
-* Machine Learning
-* Programación en general
+- Ciencia de Datos
+- Machine Learning
+- Internet de las Cosas
+- Desarrollo Backend
+- Programación en general
 
 Fuera de las aulas de clase disfruto mucho de los videojuegos, el cine y las actividades físicas; también me gusta leer y tocar la guitarra.
-
 
 <!--
 <p class="mb-5"><img class="shadow-lg" src="{{site.baseurl}}/assets/images/mediumish-jekyll-template.png" alt="jekyll template mediumish" /></p>
