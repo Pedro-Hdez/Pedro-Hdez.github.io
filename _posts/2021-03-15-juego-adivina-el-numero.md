@@ -35,6 +35,8 @@ En el siguiente diagrama de flujo se presenta la lógica del juego y la consider
 <br><br><br>
 ¡Excelente!. Ahora ya podemos programar el juego. A continuación, un vistazo al proyecto terminado. Si deseas jugarlo <a href="../web_projects/guess_the_number/index.html">Haz click aquí.</a>
 <br>
+El código fuente lo puedes encontrar en el siguiente <a href="https://github.com/Pedro-Hdez/guess-my-number-javascript">repositorio.</a>
+<br><br>
 
 <div style="text-align:center">
     <img style="width:100%; height:100%;" src="../assets/images/guessmynumber/guessmynumberdemo.gif" />
