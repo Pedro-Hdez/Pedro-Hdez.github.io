@@ -25,6 +25,35 @@ de instalación.
 
 El código fuente de este mini proyecto lo puedes encontrar en [este repositorio](https://github.com/Pedro-Hdez/DataScienceAndDockerMiniProject).
 
+## Cómo usarlo
+
+### Generar la imagen
+
+Para generar la imagen de docker necesitamos:
+
+1. Instalar docker
+2. Clonar o descargar el repositorio
+3. Situarnos en la carpeta del repositorio
+4. Ejecutar el siguiente comando:
+
+```console
+$ docker build -t <nombre_imagen> .
+```
+
+Recuerda reemplazar la cadena _<nombre_imagen>_ por el nombre que deseas asignar a la imagen que se va a construir.
+
+### Utilizar la imagen
+
+Para crear un contenedor persistente con la imagen que acabamos de crear ejecutamos la siguiente instrucción:
+
+```console
+$ docker run -it --name <nombre_contenedor> <nombre_imagen>
+```
+
+Recuerda reemplazar la cadena _<nombre_contenedor>_ por el nombre que deseas asignar al contenedor que se va a construir.
+
+El nombre de la imagen _<nombre_imagen>_ debe coincidir con el nombre que escribiste al momento de generar la imagen.
+
 ## Procedimiento
 
 El procedimiento consta de dos sencillos pasos:
@@ -48,7 +77,52 @@ Los archivos más relevantes son **Dockerfile** y **fix_data.py**. A continuaci�
 ### Dockerfile
 
 ```yml
+# Tomamos como base la imagen de ubuntu y además instalamos miniconda
 FROM ubuntu
-
 FROM continuumio/miniconda3
+
+# Autor
+LABEL Pedro Hernandez <pedro.a.hdez.a@gmail.com>
+
+# Creamos un directorio y lo convertimos en nuestro directorio de trabajo
+RUN mkdir data_cleaning
+WORKDIR /data_cleaning
+
+# Actualizamos todos los paquetes e instalamos los que faltan
+RUN apt -y update
+RUN apt install -y curl unzip csvkit
+
+# Descargamos los datos
+RUN curl -O http://datosabiertos.salud.gob.mx/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip
+
+# Descomprimimos el archivo y eliminamos el zip
+RUN unzip datos_abiertos_covid19.zip && rm datos_abiertos_covid19.zip
+
+# Obtenemos la suma de los negativos y confirmados de covid para cada municipio de Sonora y
+# guardamos el resultado en el archivo "numero_positivos_y_negativos_municipios_sonora.csv"
+RUN csvcut -c ENTIDAD_RES,MUNICIPIO_RES,CLASIFICACION_FINAL 210422COVID19MEXICO.csv | \
+    csvgrep -c ENTIDAD_RES -m "26" | csvcut -c MUNICIPIO_RES,CLASIFICACION_FINAL | \
+    csvgrep -c CLASIFICACION_FINAL -r "[37]" | csvsort --no-inference -c 1,2 | uniq -c | \
+    tail -n+2 | sed -e 's/\s\+/,/g' | cut -c 2- > numero_positivos_y_negativos_municipios_sonora.csv
+
+RUN sed -i '1s/^/TOTAL,MUNICIPIO_RES,CLASIFICACION_FINAL\n/' numero_positivos_y_negativos_municipios_sonora.csv
+
+CMD ["bash"]
+
+# El archivo anterior tendrá como valores en sus renglones el total, las claves de los municipios
+# y la clave de la clasificación. Para mapear estas claves a sus respectivos valores haremos
+# uso de un script de python.
+
+# Copiamos el entorno de anaconda, el catálogo de los datos y el script para arreglar los datos
+COPY data_processing.yml .
+COPY 201128_Catalogos.xlsx .
+COPY fix_data.py .
+
+# Creamos el entorno de anaconda y configuramos bash para correr anaconda
+RUN conda env create -f data_processing.yml
+SHELL ["conda", "run", "-n", "data_processing", "/bin/bash", "-c"]
+SHELL ["conda", "run", "--no-capture-output", "-n", "data_processing", "python", "fix_data.py"]
+
+# Corremos el script para arreglar los datos
+RUN python fix_data.py
 ```
