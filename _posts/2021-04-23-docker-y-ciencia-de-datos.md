@@ -267,3 +267,42 @@ df_datos['CLASIFICACION_FINAL'] = df_datos['CLASIFICACION_FINAL'].map(df_clasifi
 # Guardamos la información en un csv
 df_datos.to_csv("positivos_y_negativos_municipios_sonora.csv", index=False)
 ```
+
+Este pequeño script es muy sencillo, en parte por su tamaño y también gracias a la
+simplicidad de la sintaxis de Python.
+
+Si echamos un vistazo a nuestro resultado parcial, nos daremos cuenta que contiene claves en vez de valores que representen algo para nosotros:
+
+```console
+$ cat numero_positivos_y_negativos_municipios_sonora.csv | head -n 10
+TOTAL,MUNICIPIO_RES,CLASIFICACION_FINAL
+17,001,3
+14,001,7
+1021,002,3
+851,002,7
+178,003,3
+143,003,7
+76,004,3
+82,004,7
+21,005,3
+```
+
+Sin embargo, al correr el script, sustituimos las claves haciendo uso del archivo
+**201128_Catalogos.xlsx** y guardamos nuestro resultado final en el archivo
+**positivos_y_negativos_municipios_sonora.csv**. Ahora, nuestros datos tienen un signifcado:
+
+```console
+$ cat positivos_y_negativos_municipios_sonora.csv | head -n 10
+TOTAL,MUNICIPIO_RES,CLASIFICACION_FINAL
+17,ACONCHI,CASO DE SARS-COV-2  CONFIRMADO
+14,ACONCHI,NEGATIVO A SARS-COV-2
+1021,AGUA PRIETA,CASO DE SARS-COV-2  CONFIRMADO
+851,AGUA PRIETA,NEGATIVO A SARS-COV-2
+178,ALAMOS,CASO DE SARS-COV-2  CONFIRMADO
+143,ALAMOS,NEGATIVO A SARS-COV-2
+76,ALTAR,CASO DE SARS-COV-2  CONFIRMADO
+82,ALTAR,NEGATIVO A SARS-COV-2
+21,ARIVECHI,CASO DE SARS-COV-2  CONFIRMADO
+```
+
+De esta forma hemos realizado una pequeña limpieza a una base de datos y al mismo tiempo preparamos un ambiente de trabajo reproducible.
