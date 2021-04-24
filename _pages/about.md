@@ -18,7 +18,6 @@ Mis intereses profesionales son:
 - Ciencia de Datos
 - Machine Learning
 - Internet de las Cosas
-- Desarrollo Backend
 - Programación en general
 
 Fuera de las aulas de clase disfruto mucho de los videojuegos, el cine y las actividades físicas; también me gusta leer y tocar la guitarra.
