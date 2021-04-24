@@ -162,31 +162,27 @@ RUN python fix_data.py
 La parte fundamental de este Dockerfile es el tratamiento de los datos (líneas 24-29), explicaré
 cada pipe que se utilizó:
 
-```console
-$ csvcut -c ENTIDAD_RES,MUNICIPIO_RES,CLASIFICACION_FINAL 210422COVID19MEXICO.csv
-```
-
 La base de datos contiene 40 columnas. Nosotros únicamente necesitamos las columnas de
 _ENTIDAD_RES_ para identificar a Sonora, _MUNICIPIO_RES_ para identificar cada municipio, _CLASIFICACION_FINAL_ para
 identificar a los casos positivos y negativos a Covid-19. Entonces, en nuestra primer pipe filtramos el archivo
 para quedarnos únicamente con las columnas que nos interesan.
 
 ```console
-$ csvgrep -c ENTIDAD_RES -m "26"
+$ csvcut -c ENTIDAD_RES,MUNICIPIO_RES,CLASIFICACION_FINAL 210422COVID19MEXICO.csv
 ```
 
 Con este pipe elegimos únicamente los renglones que tengan como valor "26" (la clave de Sonora) en su columna _ENTIDAD_RES_.
 Para entender esta clave y las demás es necesario consultar el archivo **201128_Catalogos.xlsx**
 
 ```console
-$ csvcut -c MUNICIPIO_RES,CLASIFICACION_FINAL
+$ csvgrep -c ENTIDAD_RES -m "26"
 ```
 
 Aquí deshechammos la columna _ENTIDAD_RES_, ésta ya no nos interesa porque con el pipe anterior nos
 aseguramos que estamos trabajando únicamente con registros de Sonora.
 
 ```console
-$ csvgrep -c CLASIFICACION_FINAL -r "[37]"
+$ csvcut -c MUNICIPIO_RES,CLASIFICACION_FINAL
 ```
 
 Aplicamos la expresión regular "[37]" a la columna _CLASIFICACION_FINAL_; es decir, nos quedamos
@@ -194,7 +190,7 @@ Aplicamos la expresión regular "[37]" a la columna _CLASIFICACION_FINAL_; es de
 significa que nos quedamos úncamente con los datos positivos (3) y negativos a Covid-19.
 
 ```console
-$ csvsort --no-inference -c 1,2 | uniq -c
+$ csvgrep -c CLASIFICACION_FINAL -r "[37]"
 ```
 
 Aquí existen dos pipes que van de la mano. Con el primero ordenamos los datos, primero por su
@@ -203,7 +199,7 @@ contamos las líneas únicas de la base de datos. Haciendo ésto obtenemos el to
 el total de negativos a Covid-19 en cada uno de los municipios de Sonora.
 
 ```console
-$ tail -n+2
+$ csvsort --no-inference -c 1,2 | uniq -c
 ```
 
 La pipe anterior cuenta cuántas veces se repite una línea en todo el archivo, por lo tanto, también
@@ -212,19 +208,23 @@ de veces que se repite, por lo tanto, este encabezado ya no nos sirve más. Con 
 tomamos todas las líneas del archivo excepto la primera.
 
 ```console
-$ sed -e 's/\s\+/,/g'
+$ tail -n+2
 ```
 
 El comando _uniq_ tiene su propio formato de salida, por lo general utiliza espacios en blanco como
 separadores y también los agrega al inicio de cada línea. Con esta instrucción sustituímos esos espacios en blanco por comas.
 
 ```console
-$ cut -c 2- > numero_positivos_y_negativos_municipios_sonora.csv
+$ sed -e 's/\s\+/,/g'
 ```
 
 Debido a que el comando anterior también incluyó comas al inicio de cada renglón del archivo, con este pipe
 borramos los dos primeros caracteres de cada línea, es decir, nos deshacemos de las comas existentes
 al inicio de todas las líneas. Finalmente escribimos este resultado en un archivo.
+
+```console
+$ cut -c 2- > numero_positivos_y_negativos_municipios_sonora.csv
+```
 
 En este punto ya tenemos un archivo con la sumatoria de casos positivos y negativos a Covid-19 para
 cada municipio del estado de Sonora. Pero todavía nos falta un pequeño detalle. Recordemos que al usar
@@ -236,3 +236,34 @@ $ sed -i '1s/^/TOTAL,MUNICIPIO_RES,CLASIFICACION_FINAL\n/' numero_positivos_y_ne
 ```
 
 ¡Listo! Ahora ya tenemos el resultado parcial.
+
+### fix_data.py
+
+```python
+import pandas as pd
+
+# Leyendo la hoja de municipios de los catálogos
+df_municipios = pd.read_excel(io="201128_Catalogos.xlsx",
+                          sheet_name="Catálogo MUNICIPIOS")
+
+# Leyendo la hoja de clasificación final de los catálogos
+df_clasificacion = pd.read_excel(io="201128_Catalogos.xlsx",
+                          sheet_name="Catálogo CLASIFICACION_FINAL", skiprows=2)
+
+# Leyendo el csv que nosotros obtuvimos
+df_datos = pd.read_csv("numero_positivos_y_negativos_municipios_sonora.csv", index_col=None)
+
+# Obtenemos los municipios de sonora (con CLAVE_ENTIDAD == 26) y eliminamos dicha columna
+df_municipios = df_municipios.loc[df_municipios['CLAVE_ENTIDAD'] == 26].drop(['CLAVE_ENTIDAD'], axis=1)
+
+# Reemplazamos los datos en nuestro csv de acuerdo al nombre del municipio asignado a cada clave.
+# Esta información la obtenemos del catálogo de municipios
+df_datos['MUNICIPIO_RES'] = df_datos['MUNICIPIO_RES'].map(df_municipios.set_index('CLAVE_MUNICIPIO')['MUNICIPIO'])
+
+# Reemplazamos la clasificación final en nuestros datos de acuerdo a la clave asignada. Esta
+# información la obtenemos del catálogo de clasificaciones finales
+df_datos['CLASIFICACION_FINAL'] = df_datos['CLASIFICACION_FINAL'].map(df_clasificacion.set_index('CLAVE')['CLASIFICACIÓN'])
+
+# Guardamos la información en un csv
+df_datos.to_csv("positivos_y_negativos_municipios_sonora.csv", index=False)
+```
