@@ -3,6 +3,7 @@ layout: post
 title: "Docker y Ciencia de Datos"
 author: pedro
 portada: assets/images/portadas/ciencia_datos_proyecto_es.png
+image: assets/images/dockerdatascience/dockerdatascience.png
 categories: [Ciencia de datos]
 description: "Mini proyecto de limpieza de datos generando una imagen de Docker."
 beforetoc: "En esta publicación se realizará una limpieza de datos de Covid-19 en México utilizando
