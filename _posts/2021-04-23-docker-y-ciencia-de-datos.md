@@ -40,7 +40,7 @@ Para generar la imagen de docker necesitamos:
 $ docker build -t <nombre_imagen> .
 ```
 
-Recuerda reemplazar la cadena _<nombre_imagen>_ por el nombre que deseas asignar a la imagen que se va a construir.
+Recuerda reemplazar la cadena <nombre_imagen> por el nombre que deseas asignar a la imagen que se va a construir.
 
 ### Utilizar la imagen
 
@@ -50,9 +50,9 @@ Para crear un contenedor persistente con la imagen que acabamos de crear ejecuta
 $ docker run -it --name <nombre_contenedor> <nombre_imagen>
 ```
 
-Recuerda reemplazar la cadena _<nombre_contenedor>_ por el nombre que deseas asignar al contenedor que se va a construir.
+Recuerda reemplazar la cadena <nombre_contenedor> por el nombre que deseas asignar al contenedor que se va a construir.
 
-El nombre de la imagen _<nombre_imagen>_ debe coincidir con el nombre que escribiste al momento de generar la imagen.
+El nombre de la imagen <nombre_imagen> debe coincidir con el nombre que escribiste al momento de generar la imagen.
 
 ## Procedimiento
 
