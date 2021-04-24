@@ -30,10 +30,10 @@ El código fuente de este mini proyecto lo puedes encontrar en [este repositorio
 
 ### Generar la imagen
 
-Para generar la imagen de docker necesitamos:
+Para generar la imagen de Docker necesitamos:
 
-1. Instalar docker
-2. Clonar o descargar el repositorio
+1. Instalar Docker
+2. Clonar o descargar el repositorio del proyecto
 3. Situarnos en la carpeta del repositorio
 4. Ejecutar el siguiente comando:
 
@@ -188,7 +188,7 @@ $ csvcut -c MUNICIPIO_RES,CLASIFICACION_FINAL
 
 Aplicamos la expresión regular "[37]" a la columna _CLASIFICACION_FINAL_; es decir, nos quedamos
 únicamente con los renglones que tengan un "3" o un "7" como valor en la columna mencionada. Esto
-significa que nos quedamos úncamente con los datos positivos (3) y negativos a Covid-19.
+significa que nos quedamos úncamente con los datos positivos (3) y negativos (7) a Covid-19.
 
 ```console
 $ csvgrep -c CLASIFICACION_FINAL -r "[37]"
@@ -213,15 +213,14 @@ $ tail -n+2
 ```
 
 El comando _uniq_ tiene su propio formato de salida, por lo general utiliza espacios en blanco como
-separadores y también los agrega al inicio de cada línea. Con esta instrucción sustituímos esos espacios en blanco por comas.
+separadores y también los agrega al inicio de cada línea. Con esta instrucción sustituímos esos espacios en blanco por una coma.
 
 ```console
 $ sed -e 's/\s\+/,/g'
 ```
 
 Debido a que el comando anterior también incluyó comas al inicio de cada renglón del archivo, con este pipe
-borramos los dos primeros caracteres de cada línea, es decir, nos deshacemos de las comas existentes
-al inicio de todas las líneas. Finalmente escribimos este resultado en un archivo.
+borramos todo hasta llegar al segundo caracter de cada línea, es decir, nos deshacemos de las comas existentes al principio de cada renglón. Finalmente escribimos este resultado en un archivo.
 
 ```console
 $ cut -c 2- > numero_positivos_y_negativos_municipios_sonora.csv
