@@ -179,8 +179,8 @@ Para entender esta clave y las demás es necesario consultar el archivo **201128
 $ csvgrep -c ENTIDAD_RES -m "26"
 ```
 
-Aquí deshechammos la columna _ENTIDAD_RES_, ésta ya no nos interesa porque con el pipe anterior nos
-aseguramos que estamos trabajando únicamente con registros de Sonora.
+Aquí deshechamos la columna _ENTIDAD_RES_, ésta ya no nos interesa porque con el pipe anterior nos
+aseguramos de que estamos trabajando únicamente con registros de Sonora.
 
 ```console
 $ csvcut -c MUNICIPIO_RES,CLASIFICACION_FINAL
