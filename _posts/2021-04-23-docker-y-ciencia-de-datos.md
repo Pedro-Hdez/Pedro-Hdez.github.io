@@ -54,6 +54,38 @@ Recuerda reemplazar la cadena <nombre_contenedor> por el nombre que deseas asign
 
 El nombre de la imagen <nombre_imagen> debe coincidir con el nombre que escribiste al momento de generar la imagen.
 
+En este momento se desplegará la terminal del contenedor y podrás ver algo parecido a lo siguiente:
+
+```console
+(base) root@3328f252cf7f:/data_cleaning#
+```
+
+Si enlistamos los archivos contenidos en el directorio actual tendremos lo siguiente:
+
+```console
+(base) root@3328f252cf7f:/data_cleaning# ls
+201128_Catalogos.xlsx	 data_processing.yml  numero_positivos_y_negativos_municipios_sonora.csv
+210422COVID19MEXICO.csv  fix_data.py	      positivos_y_negativos_municipios_sonora.csv
+```
+
+El archivo llamado **positivos_y_negativos_municipios_sonora.csv** es el que almacena el resultado deseado. Podemos echarle un vistazo y confirmar que contiene la sumatoria de los casos positivos y negativos a Covid-19 para cada municipio del estado de Sonora.
+
+```console
+(base) root@3328f252cf7f:/data_cleaning# cat positivos_y_negativos_municipios_sonora.csv | head -n 10
+TOTAL,MUNICIPIO_RES,CLASIFICACION_FINAL
+17,ACONCHI,CASO DE SARS-COV-2  CONFIRMADO
+14,ACONCHI,NEGATIVO A SARS-COV-2
+1021,AGUA PRIETA,CASO DE SARS-COV-2  CONFIRMADO
+851,AGUA PRIETA,NEGATIVO A SARS-COV-2
+178,ALAMOS,CASO DE SARS-COV-2  CONFIRMADO
+143,ALAMOS,NEGATIVO A SARS-COV-2
+76,ALTAR,CASO DE SARS-COV-2  CONFIRMADO
+82,ALTAR,NEGATIVO A SARS-COV-2
+21,ARIVECHI,CASO DE SARS-COV-2  CONFIRMADO
+```
+
+Si deseas conocer el procedimiento para obtener dicho resultado te invito a continuar leyendo este post.
+
 ## Procedimiento
 
 El procedimiento consta de dos sencillos pasos:
