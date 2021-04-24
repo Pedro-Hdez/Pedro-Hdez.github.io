@@ -42,7 +42,7 @@ $ docker build -t <nombre_imagen> .
 
 Recuerda reemplazar la cadena <nombre_imagen> por el nombre que deseas asignar a la imagen que se va a construir.
 
-### Utilizar la imagen
+### Crear un contenedor a partir de la imagen generada
 
 Para crear un contenedor persistente con la imagen que acabamos de crear ejecutamos la siguiente instrucción:
 
@@ -90,10 +90,10 @@ Si deseas conocer el procedimiento para obtener dicho resultado te invito a cont
 
 El procedimiento consta de dos sencillos pasos:
 
-1. Para la descarga y limpieza preliminar de los datos usaremos las herramientas de la línea de comandos de Unix, más específicamente, utilizando la distribución de Ubuntu.
+1. Para la descarga y limpieza preliminar de los datos usaremos las herramientas de la línea de comandos de Unix, más específicamente, utilizaremos la distribución de Ubuntu.
 2. Con el paso anterior obtendremos un archivo csv pero cada casilla contendrá las claves de los valores reales. Por lo tanto, es necesaria una segunda etapa para sustituir dichas claves y así obtener un resultado humanamente legible. Para esta etapa nos apoyaremos de un script de Python utilizando la librería Pandas.
 
-Este procedimiento se realizará desde un Dockerfile, por lo tanto, cualquier usuario puede reproducirlo y obtendrá exactamente el mismo resultado que se mostrará en este post; además, nos ahorraremos todos los problemas de configuración de nuestro ambiente de trabajo ¡Qué bonito es Docker!.
+Este procedimiento se realizará desde un Dockerfile, por lo tanto, cualquier usuario puede reproducirlo y obtendrá exactamente el mismo resultado; además, nos ahorraremos todos los problemas de configuración de nuestro ambiente de trabajo ¡Qué bonito es Docker!.
 
 ### Archivos necesarios
 
@@ -158,3 +158,81 @@ SHELL ["conda", "run", "--no-capture-output", "-n", "data_processing", "python",
 # Corremos el script para arreglar los datos
 RUN python fix_data.py
 ```
+
+La parte fundamental de este Dockerfile es el tratamiento de los datos (líneas 24-29), explicaré
+cada pipe que se utilizó:
+
+```console
+$ csvcut -c ENTIDAD_RES,MUNICIPIO_RES,CLASIFICACION_FINAL 210422COVID19MEXICO.csv
+```
+
+La base de datos contiene 40 columnas. Nosotros únicamente necesitamos las columnas de
+_ENTIDAD_RES_ para identificar a Sonora, _MUNICIPIO_RES_ para identificar cada municipio, _CLASIFICACION_FINAL_ para
+identificar a los casos positivos y negativos a Covid-19. Entonces, en nuestra primer pipe filtramos el archivo
+para quedarnos únicamente con las columnas que nos interesan.
+
+```console
+$ csvgrep -c ENTIDAD_RES -m "26"
+```
+
+Con este pipe elegimos únicamente los renglones que tengan como valor "26" (la clave de Sonora) en su columna _ENTIDAD_RES_.
+Para entender esta clave y las demás es necesario consultar el archivo **201128_Catalogos.xlsx**
+
+```console
+$ csvcut -c MUNICIPIO_RES,CLASIFICACION_FINAL
+```
+
+Aquí deshechammos la columna _ENTIDAD_RES_, ésta ya no nos interesa porque con el pipe anterior nos
+aseguramos que estamos trabajando únicamente con registros de Sonora.
+
+```console
+$ csvgrep -c CLASIFICACION_FINAL -r "[37]"
+```
+
+Aplicamos la expresión regular "[37]" a la columna _CLASIFICACION_FINAL_; es decir, nos quedamos
+únicamente con los renglones que tengan un "3" o un "7" como valor en la columna mencionada. Esto
+significa que nos quedamos úncamente con los datos positivos (3) y negativos a Covid-19.
+
+```console
+$ csvsort --no-inference -c 1,2 | uniq -c
+```
+
+Aquí existen dos pipes que van de la mano. Con el primero ordenamos los datos, primero por su
+columna 1 (_MUNICIPIO_RES_) y después por la columna 2 (_CLASIFICACION_FINAL_) y con el segundo
+contamos las líneas únicas de la base de datos. Haciendo ésto obtenemos el total de positivos y
+el total de negativos a Covid-19 en cada uno de los municipios de Sonora.
+
+```console
+$ tail -n+2
+```
+
+La pipe anterior cuenta cuántas veces se repite una línea en todo el archivo, por lo tanto, también
+cuenta el encabezado del csv (el renglón que contiene el nombre de las columnas) y le agrega la cantidad
+de veces que se repite, por lo tanto, este encabezado ya no nos sirve más. Con esta instrucción
+tomamos todas las líneas del archivo excepto la primera.
+
+```console
+$ sed -e 's/\s\+/,/g'
+```
+
+El comando _uniq_ tiene su propio formato de salida, por lo general utiliza espacios en blanco como
+separadores y también los agrega al inicio de cada línea. Con esta instrucción sustituímos esos espacios en blanco por comas.
+
+```console
+$ cut -c 2- > numero_positivos_y_negativos_municipios_sonora.csv
+```
+
+Debido a que el comando anterior también incluyó comas al inicio de cada renglón del archivo, con este pipe
+borramos los dos primeros caracteres de cada línea, es decir, nos deshacemos de las comas existentes
+al inicio de todas las líneas. Finalmente escribimos este resultado en un archivo.
+
+En este punto ya tenemos un archivo con la sumatoria de casos positivos y negativos a Covid-19 para
+cada municipio del estado de Sonora. Pero todavía nos falta un pequeño detalle. Recordemos que al usar
+la instrucción _uniq -c_ destruimos el encabezado de nuestro archivo, entonces como última acción
+necesitamos volver a añadir dicho encabezado, para eso utilizamos la siguiente instrucción:
+
+```console
+$ sed -i '1s/^/TOTAL,MUNICIPIO_RES,CLASIFICACION_FINAL\n/' numero_positivos_y_negativos_municipios_sonora.csv
+```
+
+¡Listo! Ahora ya tenemos el resultado parcial.
