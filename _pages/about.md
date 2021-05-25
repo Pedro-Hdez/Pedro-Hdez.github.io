@@ -9,7 +9,7 @@ permalink: /about
 </div>
 <br>
 
-Soy Pedro Hernández, estudiante del último semestre de la Licenciatura en Ciencias de la Computación en la Universidad de Sonora. CS Blog
+Soy Pedro Hernández, egresado de la Licenciatura en Ciencias de la Computación en la Universidad de Sonora. CS Blog
 nace de la idea de crear un portafolio para mostrar evidencias de los conocimientos que he adquirido a lo largo de mi trayectoria universitaria. Si
 algún material presente en este blog te resulta útil ¡no dudes en usarlo!.
 
@@ -17,10 +17,11 @@ Mis intereses profesionales son:
 
 - Ciencia de Datos
 - Machine Learning
+- Estadística
 - Internet de las Cosas
 - Programación en general
 
-Fuera de las aulas de clase disfruto mucho de los videojuegos, el cine y las actividades físicas; también me gusta leer y tocar la guitarra.
+Fuera del trabajo, disfruto mucho de los videojuegos, el cine y las actividades físicas; también me gusta leer y tocar la guitarra.
 
 <!--
 <p class="mb-5"><img class="shadow-lg" src="{{site.baseurl}}/assets/images/mediumish-jekyll-template.png" alt="jekyll template mediumish" /></p>
