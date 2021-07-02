@@ -50,7 +50,7 @@ El objetivo es terminar de llenar el tablero con los números del 1 al 9 utiliza
 * Cada dígito debe aparecer una sola vez en cada columna.
 * Cada dígito debe aparecer una sola vez en cada cuadrado interno.
 
-## Ejemplo
+### Ejemplo
 
 Si bien hay muy pocas reglas, a veces puede resultar confuso cuando nunca lo hemos jugado. A continuación un ejemplo:
 
@@ -101,6 +101,97 @@ Abajo se muestra el tablero resuelto, observa que ningún número se repite ni p
     <img style="width:100%; height:100%;" src="../assets/images/sudokupython/ejemploResuelto.png" />
     <p><i>Figura 7. Ejemplo resuelto</i></p>
 </div>
+
+## Implementación
+
+Una vez conocidas las reglas es momento de comenzar a pensar en la implementación de una solución computacional al problema de resolver y generar tableros de Sudoku. Recuerda que puedes encontrar el código fuente [aquí](https://github.com/Pedro-Hdez/sudoku-python).
+
+### Planeación y Consideraciones
+
+El objetivo del proyecto es construir un programa que resuelva Sudokus y también que sea capaz de generar tableros parcialmente completos para que alguien más los utilice para jugar.
+
+He optado por construir la clase ```SudokuBoard``` que contiene el atributo ```self.board``` donde se almacenará el tablero. Asimismo, la clase tendrá métodos públicos para resolver, imprimir y generar tableros de Sudoku. 
+
+Antes de comenzar a programar necesitamos saber cómo vamos a representar el juego en la computadora y también debemos establecer una manera para darle a conocer al programa el tablero que deseamos resolver.
+
+#### Representación del Tablero
+
+Para ésto, nos olvidaremos momentáneamente de los cuadrados internos y representaremos el tablero como un arreglo 2-dimensional (lista de listas) de $$9x9$$. Cada renglón del tablero corresponde a una lista diferente; además, los espacios vacíos se van a representar con el número 0. Aquí un pequeño ejemplo:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/representacionDelTablero.png" />
+    <p><i>Figura 8. Representación del tablero en el programa</i></p>
+</div>
+
+#### Entrada del Tablero al Programa
+
+Considero que la forma más eficiente para que el programa lea el tablero a resolver es que lo haga secuencialmente. De este modo también será muy fácil y rápido para nosotros como humanos escribir los valores de las 81 casillas del tablero. A continuación, un ejemplo de cómo le pasaríamos al programa el tablero a resolver:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/tableroComoCadena.png" />
+    <p><i>Figura 9. Entrada secuencial del tablero al programa</i></p>
+</div>
+
+### Métodos base
+
+#### Constructor
+
+```python
+    class SudokuBoard:
+        def __init__(self, board=None):
+            """
+                This class represents a Sudoku Board and its methods.
+                
+                Params
+                ------
+                board: It expects a 81 characters <string> object containing the numbers distribution 
+                    in the board. Empty cells are represented with 0. If <None> is given, then an 
+                    empty board will be created (9x9 board filled with 0's).
+            """
+
+            # Populate the board with 0's
+            self.__resetBoard()
+
+            # If board was given, copy it to the self.board attribute
+            if board:
+                for i in range(0,9):
+                    for j in range(0,9):
+                        self.board[i][j] = int(board[(i*9) + j])
+```
+
+Recordemos que el programa no solo solucionará Sudokus, sino que también los generará. Por ese motivo no es obligatorio darle al constructor un tablero inicial, por lo que su parámetro ```board```
+es opcional. Además, siempre que creemos una instancia de la clase se utilizará el método privado ```self.__resetBoard()``` que inicializa el atributo ```self.board``` como un tablero vacío. En caso de que el parámetro ```board``` sea una cadena de 81 caracteres, entonces utilizamos los ciclos For anidados para copiar los valores de la cadena proporcionada al tablero interno. 
+
+A continuación, el método que resetea el tablero o, en otras palabras, el que crea un tablero interno vacío.
+
+```python
+        def __resetBoard(self):
+            """
+                This private functions resets the board state. This is, fill it with 0's
+                (empty spaces).
+            """
+            self.board = [
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0]] 
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
