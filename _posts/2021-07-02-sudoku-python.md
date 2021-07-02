@@ -137,26 +137,26 @@ Considero que la forma más eficiente para que el programa lea el tablero a reso
 #### Constructor
 
 ```python
-    class SudokuBoard:
-        def __init__(self, board=None):
-            """
-                This class represents a Sudoku Board and its methods.
-                
-                Params
-                ------
-                board: It expects a 81 characters <string> object containing the numbers distribution 
-                    in the board. Empty cells are represented with 0. If <None> is given, then an 
-                    empty board will be created (9x9 board filled with 0's).
-            """
+class SudokuBoard:
+    def __init__(self, board=None):
+        """
+            This class represents a Sudoku Board and its methods.
+            
+            Params
+            ------
+            board: It expects a 81 characters <string> object containing the numbers distribution 
+                in the board. Empty cells are represented with 0. If <None> is given, then an 
+                empty board will be created (9x9 board filled with 0's).
+        """
 
-            # Populate the board with 0's
-            self.__resetBoard()
+        # Populate the board with 0's
+        self.__resetBoard()
 
-            # If board was given, copy it to the self.board attribute
-            if board:
-                for i in range(0,9):
-                    for j in range(0,9):
-                        self.board[i][j] = int(board[(i*9) + j])
+        # If board was given, copy it to the self.board attribute
+        if board:
+            for i in range(0,9):
+                for j in range(0,9):
+                    self.board[i][j] = int(board[(i*9) + j])
 ```
 
 Recordemos que el programa no solo solucionará Sudokus, sino que también los generará. Por ese motivo no es obligatorio darle al constructor un tablero inicial, por lo que su parámetro ```board```
@@ -165,21 +165,21 @@ es opcional. Además, siempre que creemos una instancia de la clase se utilizar�
 A continuación, el método que resetea el tablero o, en otras palabras, el que crea un tablero interno vacío.
 
 ```python
-        def __resetBoard(self):
-            """
-                This private functions resets the board state. This is, fill it with 0's
-                (empty spaces).
-            """
-            self.board = [
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0]] 
+    def __resetBoard(self):
+        """
+            This private functions resets the board state. This is, fill it with 0's
+            (empty spaces).
+        """
+        self.board = [
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0]] 
 ```
 
 
