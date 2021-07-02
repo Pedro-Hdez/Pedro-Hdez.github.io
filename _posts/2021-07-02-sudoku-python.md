@@ -16,23 +16,23 @@ toc: true
 Para ejecutar el programa necesitas instalar Python en tu dispositivo. Puedes descargar los archivos 
 necesarios desde su [sitio oficial](https://www.python.org/downloads/). Si utilizas alguna 
 distribución de Linux es muy probable que Python ya se encuentre instalado, si es así, te 
-recomiendo actualizarlo porque es probable que tengas una versión desactualizada. 
+recomiendo actualizarlo porque es probable que tengas una versión antigüa. 
 
-Aquí unas [guías excelentes](https://realpython.com/installing-python/#how-to-install-python-on-linux)
+Aquí unas [guías excelentes](https://realpython.com/installing-python/)
 para la instalación de Python en cualquier sistema operativo.
 
-Si deseas revisar el código fuente original o bien, quieres ejecutar el programa, puedes encontrar 
+Si deseas revisar el código fuente original, o bien, quieres ejecutar el programa, puedes encontrar 
 el proyecto en este [repositorio de Github](https://github.com/Pedro-Hdez/sudoku-python).
 
 ## Breve Historia del Sudoku
 
-El Sudoku tal y como lo conocemos hoy en día es un invento relativamente nuevo ¡Incluso es más joven que el mismo cubo de Rubik!. Howard Garns, un inventor de rompecabezas estadounidense lo publicó en la revista de su mismo país titulada *Dell Pencill Puzzles & Word Games* en el año de 1979 bajo el nombre de *Number Place*.
+El Sudoku tal y como lo conocemos hoy en día es un invento relativamente nuevo ¡Incluso es más joven que el cubo de Rubik!. Howard Garns, un inventor de rompecabezas estadounidense lo publicó en la revista de su mismo país titulada *Dell Pencill Puzzles & Word Games* en el año de 1979 bajo el nombre de *Number Place*.
 
 Cinco años después, en 1984 el rompecabezas llega a Japón en donde obtuvo un gran recibimiento; ahí, la comunidad lo acogió con el nombre de **Sudoku**, que es la forma abreviada de la expresión *"Sūji wa dokushin ni kagiru"* que significa *"Los dígitos solo deben aparecer una vez"*.
 
-El responsable del éxito mundial del juego fue el Neozelandés Wayne Gould, quien en 1997 se encontraba vacacionando en Tokio cuando descubrió el juego. A partir de este suceso se dio a la tarea de construir un programa de computadora para generar tableros de Sudoku y comenzó a publicarlos en diarios de Estados Unidos desde donde comenzó a esparcirse a prácticamente todos los rincones del planeta.
+El responsable del éxito mundial del juego fue el Neozelandés Wayne Gould, quien en 1997 se encontraba vacacionando en Tokio cuando descubrió el juego. A partir de este suceso se dio a la tarea de construir un programa de computadora para generar tableros de Sudoku y comenzó a publicarlos en diarios de Estados Unidos desde donde se propagó a prácticamente todos los rincones del planeta.
 
-## Objetivo y Reglas del Juego
+## Objetivo del Juego y sus Reglas
 
 Aunque existen muchas variantes del juego, nos centraremos en el original, el cual, es muy sencillo:
 
@@ -44,7 +44,7 @@ El Sudoku se juega en un tablero cuadrado de 9x9 (81 casillas) dividido en 9 cua
 </div>
 
 
-El objetivo es terminar de llenar el tablero con los dígitos del 1 al 9 utilizando los números que ya se encuentran en la cuadrícula para inferir los que faltan. Debemos respetar las siguientes reglas:
+El objetivo es terminar de llenar el tablero con los números del 1 al 9 utilizando los valores que ya se encuentran en la cuadrícula para inferir los que faltan. Debemos respetar las siguientes reglas:
 
 * Cada dígito debe aparecer una sola vez en cada renglón.
 * Cada dígito debe aparecer una sola vez en cada columna.
