@@ -36,14 +36,74 @@ El responsable del éxito mundial del juego fue el Neozelandés Wayne Gould, qui
 
 Aunque existen muchas variantes del juego, nos centraremos en el original, el cual, es muy sencillo:
 
-El Sudoku se juega en un tablero cuadrado de 9x9 (81 casillas) dividido en 9 cuadrados internos de 3x3.
+El Sudoku se juega en un tablero cuadrado de 9x9 (81 casillas) dividido en 9 cuadrados internos de 3x3. Inicialmente se nos proporcionará un tablero semivacío como el que se muestra a continuación:
 
-| ![tablerovacio.png](../assets/images/sudokupython/tablerovacio.png) |
-| :----------------------------------------------------------------: |
-|                     *Figura 1: Tablero de Sudoku*                      |
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/ejemploTableroPromedio.png" />
+    <p><i>Figura 1. Tablero promedio de Sudoku</i></p>
+</div>
 
 
-El objetivo es rellenar el tablero con los dígitos del 1 al 9 cuidando que cada dígito aparezca una única vez en cada casilla, en cada renglón y en cada cuadrado interno.
+El objetivo es terminar de llenar el tablero con los dígitos del 1 al 9 utilizando los números que ya se encuentran en la cuadrícula para inferir los que faltan. Debemos respetar las siguientes reglas:
+
+* Cada dígito debe aparecer una sola vez en cada renglón.
+* Cada dígito debe aparecer una sola vez en cada columna.
+* Cada dígito debe aparecer una sola vez en cada cuadrado interno.
+
+## Ejemplo
+
+Si bien hay muy pocas reglas, a veces puede resultar confuso cuando nunca lo hemos jugado. A continuación un ejemplo:
+
+Supongamos que queremos resolver el siguiente tablero (ignorar las casillas sombreadas, son generadas automáticamente por el [software que utilicé para los ejemplos](https://sudoku.com/)):
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/tableroAResolver.png" />
+    <p><i>Figura 2. Tablero a resolver</i></p>
+</div>
+
+Si nos centramos en la casilla central del segundo cuadrado interno podemos ver que no es posible colocar un 2 porque otro 2 ya existe en el mismo renglón; también podemos notar que sería un error poner el 5 ya que otro 5 se encuentra ya colocado en la misma columna. Asimismo, poner un 9 no es válido porque el 9 ya existe en ese cuadrado interno y en el renglón correspondiente:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/error2.png" />
+    <p><i>Figura 3. Error: número repetido en el renglón</i></p>
+</div>
+
+<br>
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/error5.png" />
+    <p><i>Figura 4. Error: número repetido en la columna</i></p>
+</div>
+
+<br>
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/error9.png" />
+    <p><i>Figura 5. Error: número repetido en renglón y cuadrado interno</i></p>
+</div>
+
+<br>
+
+Si observamos bien, los únicos números que no rompen las reglas son el 1 y el 6:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/validos.png" />
+    <p><i>Figura 6. El 1 y el 6 son válidos</i></p>
+</div>
+
+¿Entonces cuál elegir? la respuesta es ejecutar un **Algoritmo de Backtracking** para probar ambos números y saber con cúal de éstos es posible resolver el rompecabezas; sin embargo, esta opción es difícil de ejecutar para un ser humano, es por eso que aquí aprenderemos a cómo programarlo para que la computadora lo haga por nosotros. 
+
+Una opción más viable para un ser humano sería dejar pendiente esa casilla, continuar resolviendo otras y llenarla cuando estemos 100% seguros de que solamente un único valor puede encajar en ella sin romper las reglas.
+
+Abajo se muestra el tablero resuelto, observa que ningún número se repite ni por renglón, ni por columna, ni tampoco se repite dentro de un mismo cuadrado interno:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/ejemploResuelto.png" />
+    <p><i>Figura 7. Ejemplo resuelto</i></p>
+</div>
+
+
+
 
 
 
