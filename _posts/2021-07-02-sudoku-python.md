@@ -5,7 +5,7 @@ autor: pedro
 portada: "../assets/images/portadas/python_proyecto_es.png"
 image: assets/images/sudokupython/portada.jpg
 categories: [Python, Inteligencia Artificial]
-description: "Aplicación de consola para generar y resolver Sudokus."
+description: "Aplicación de consola para generar y resolver Sudokus con Backtracking y recursividad."
 beforetoc: "En este post se comentará el procedimiento que se siguió para programar el generador y
 solucionador de Sudokus, también se explicará su código y aprenderás a usarlo."
 toc: true
@@ -136,6 +136,9 @@ Considero que la forma más eficiente para que el programa lea el tablero a reso
 #### Constructor
 
 ```python
+import copy
+import random
+
 class SudokuBoard:
     def __init__(self, board=None):
         """
@@ -157,6 +160,8 @@ class SudokuBoard:
                 for j in range(0,9):
                     self.board[i][j] = int(board[(i*9) + j])
 ```
+
+Primero importamos las liberías `copy` y `random` que utilizaremos más adelante.
 
 Recordemos que el programa no solo solucionará Sudokus, sino que también los generará. Por ese motivo no es obligatorio darle al constructor un tablero inicial, por lo que su parámetro `board`
 es opcional. Además, siempre que creemos una instancia de la clase se utilizará el método privado `self.__resetBoard()` que inicializa el atributo `self.board` como un tablero vacío. En caso de que el parámetro `board` sea una cadena de 81 caracteres, entonces utilizamos los ciclos For anidados para copiar los valores de la cadena proporcionada al tablero interno.
@@ -553,7 +558,7 @@ Este método nos auxiliará al momento de ocultar casillas para asegurarnos de q
 
 Nótese que en esta ocasión si utlizamos los parámetros `board` y `emptySpace` del método `self.__findEmptySpace()`; además, estamos utilizando el método básico `boardAsString()` para convertir las soluciones en cadenas de caracteres.
 
-#### Método para generar un tablero para jugar Sudoku
+#### Método para generar un tablero de juego
 
 ```python
     def generateGameBoard(self, emptySpaces=0):
@@ -600,3 +605,277 @@ Nótese que en esta ocasión si utlizamos los parámetros `board` y `emptySpace`
 ```
 
 Este es el método principal que nos permitirá generar tableros de juego. Recibe el parámetro `emptySpaces` que representa el número de casillas a esconder. Primero, generamos un tablero completamente lleno y lo copiamos a una variable que manipularemos sin alterar el Sudoku original. Después, dentro del ciclo While seleccionamos aleatoriamente una casilla y se valida que no sea un espacio vacío. Luego, borramos el valor de la casilla y llamamos al método `self.__findNumberOfSolutions()` para resolver el tablero desde cada espacio vacío existente hasta el momento. Si el número de soluciones es diferente de 1, significa que, si borramos la casilla actual, el Sudoku dejará de tener solución única, por esta razón volvemos a asignarle su valor original. El procedimiento se repite hasta que borremos el número deseado de casillas. Al final se regresará el tablero resuelto y el de juego.
+
+### Aplicación de consola
+
+¡Lo logramos! Finalmente hemos programado un módulo para resolver y generar Sudokus. También me di a la tarea de construir una pequeña aplicación de consola para interactuar con esta clase y sus métodos. Asegúrate de cumplir con los [prerrequisitos](#prerrequisitos) para poder ejecutar el programa.
+
+Realmente el código es muy sencillo, puedes encontrarlo al final de esta sección. Por lo pronto veamos los casos de uso:
+
+#### Menú principal
+
+Una vez situados en el directorio raíz del repositorio del proyecto ejecutamos el siguiente comando
+
+```bash
+$ python console_menu.py
+```
+
+Inmediatamente deberíamos ver el menú principal:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/menuPrincipal.png" />
+    <p><i>Figura 12. Menú principal</i></p>
+</div>
+
+Desde aquí debemos teclear el número correspondiente a la acción que deseamos realizar y después dar Enter.
+
+#### Resolver un Sudoku
+
+Para realizar esta acción debemos elegir la opción 1. A continuación el programa nos pedirá que le proporcionemos un tablero de Sudoku en su forma de cadena de caracteres
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/caso1.png" />
+    <p><i>Figura 13. Resolver un Sudoku</i></p>
+</div>
+
+Resolvamos el Sudoku del [ejemplo](#ejemplo):
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/sudokuResuelto.png" />
+    <p><i>Figura 13. Sudoku resuelto</i></p>
+</div>
+
+Podemos comprobar que nuestro programa lo resuelve correctamente:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/comprobacion.png" />
+    <p><i>Figura 14. Comprobación</i></p>
+</div>
+
+#### Generar un tablero
+
+Para generar un tablero debemos elegir la opción 2 del menú principal. A continuación el programa nos pedirá el número de espacios vacíos. Se recomienda elegir un máximo de 50 por cuestiones de velocidad. Por ejemplo, un tablero con 40 espacios vacíos:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/tableroGenerado.png" />
+    <p><i>Figura 16. Tablero generado</i></p>
+</div>
+
+También podemos comprobar que la solución al tablero de juego es única con el siguiente [software online](https://sudokuspoiler.azurewebsites.net/). Como podremos ver en la esquina inferior izquierda, el programa indica que solo existe una solución.
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/comprobacion2.png" />
+    <p><i>Figura 17. Comprobación de la unicidad de la solución</i></p>
+</div>
+
+Si pedimos un tablero con 0 espacios vacíos, únicamente se desplegará el tablero resuelto:
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/generacion2.png" />
+    <p><i>Figura 18. Generación de un tablero sin espacions vacíos</i></p>
+</div>
+
+#### Mostrar instrucciones
+
+Si deseamos leer las instrucciones, entonces debemos elegir la opción 3 del menú principal
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/generacion2.png" />
+    <p><i>Figura 19. Instrucciones del programa</i></p>
+</div>
+
+#### Código
+
+```python
+from sudokuBoard import SudokuBoard
+import os
+
+def printHeader():
+    """"
+        This method prints a header
+    """
+
+    print("SUDOKU BOARD SOLVER AND GENERATOR")
+    print("By Pedro Hernández\n")
+    print("| -------------------------------------------------- |")
+    print("| Github: https://github.com/Pedro-Hdez              |")
+    print("| Portfolio (Spanish): https://pedro-hdez.github.io/ |")
+    print("| -------------------------------------------------- |\n\n")
+
+
+def clearConsole():
+    """
+        This method clears the console
+    """
+
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
+
+
+def showMenu():
+    """
+        This method show the main menu and perform the user input validation
+    """
+
+    printHeader()
+
+    print("Which action do you like to perform?")
+    print("1: Solve a Sudoku")
+    print("2: Generate new board")
+    print("3: Read instructions")
+
+    # Aux. variable to know if the usr input is valid
+    valid_input = False
+    # Variable to store user input
+    usr_input = 0
+
+    # Request an action until the user input is valid
+    while not valid_input:
+        usr_input = input("\nSelect an option:  ")
+        # Checking if user input is a number
+        try:
+            usr_input = int(usr_input)
+            # Checking if user input is 1 or 2
+            if usr_input < 1 or usr_input > 3:
+                raise Exception
+
+            valid_input = True
+        except:
+            print("Error, invalid input. Please, select a valid option and try again.")
+            continue
+
+    clearConsole()
+
+    return usr_input
+
+
+def solveSudokuCase():
+    """
+        This method requests a sudoku in string format, solves it and prints it, as well as performs
+        the user input validation
+    """
+
+    print("SOLVE A SUDOKU\n\n")
+    print("Please, write the 81 cell values below (Remember, empty cells are represented by 0)\n")
+
+    valid_input = False
+    while not valid_input:
+        boardAsString = input(": ")
+
+        charCounter = 0
+        for c in boardAsString:
+            # Checking input only contains digits and not letters or another symbols
+            try:
+                int(c)
+                charCounter += 1
+            except:
+                print("Error. Input must contain only digits. Please, try again.\n")
+                break
+
+        #Checking if input length is correct
+        if charCounter != 81:
+            print("Error. Input length must have a length of 81 characters. Please, try again.\n")
+            continue
+
+        valid_input = True
+
+    b = SudokuBoard(board=boardAsString)
+    print("\n\nORIGINAL BOARD")
+    b.printBoard()
+    print("\nSOLVED BOARD")
+    b.solve()
+    b.printBoard()
+    input("\nPress a key to return to the main menu...")
+
+
+def generateNewBoardCase():
+    """
+        This method generates a new board. It requests the number of empty spaces and validates it.
+    """
+    print("GENERATE NEW BOARD\n\n")
+    valid_input = False
+    emptySpaces = 0
+    while not valid_input:
+        emptySpaces = input("How many empty spaces do you want the board have? (0-50):  ")
+        # Checking if user input is a number
+        try:
+            emptySpaces = int(emptySpaces)
+            # Checking if user input is within valid range
+            if emptySpaces < 0 or emptySpaces > 50:
+                raise Exception
+
+            valid_input = True
+        except:
+            print("Error, invalid input. Please, type a number in the range (0-50) and try again.")
+            continue
+
+    b = SudokuBoard()
+    if emptySpaces > 0:
+        filled, unfilled = b.generateGameBoard(emptySpaces=emptySpaces)
+        print("\n\nNON-FILLED BOARD")
+        unfilled.printBoard()
+        print("\nFILLED BOARD")
+        filled.printBoard()
+    else:
+        filled, _ = b.generateGameBoard()
+        print("\nFILLED BOARD")
+        filled.printBoard()
+
+    input("\nPress a key to return to the main menu...")
+
+
+def readInstructionsCase():
+    """
+        This method prints the program's instructions.
+    """
+    printHeader()
+
+    print("INSTRUCTIONS\n")
+
+    print("From main menu select an action to perform:")
+    print("Press 1 to Solve a Sudoku")
+    print("Press 2 to Generate new board")
+    print("Press 3 to Read instructions\n\n")
+
+    print("OPTION 1: SOLVE A SUDOKU\n")
+    print("The program will request the board wrote as a 81 character string. Empty spaces are represented with the \'0\' character.")
+    print("\nExample: Let the following board an unsolved sudoku:")
+
+    b = SudokuBoard()
+    b.generateGameBoard(emptySpaces=30)
+    b.printBoard()
+
+    print("\nIf you want to solve it, then you need to give the program the following string:\n")
+    print(f": {b.boardAsString()}\n")
+    print("Which contains the cells values row by row.\n\n")
+
+    print("-----------------------------------------------\n\n")
+
+    print("OPTION 2: GENERATE NEW BOARD\n")
+    print("The program will request the number of empty spaces the new board will have (0-50).")
+    print("If you want a random solved Sudoku board, then you need to request 0 empty spaces.")
+    print("**NOTE** The more empty spaces you want, the slower the generation process will be.")
+
+
+    input("\nPress a key to return to the main menu...")
+
+
+if __name__ == "__main__":
+    while True:
+        clearConsole()
+        usr_input = showMenu()
+
+        if usr_input == 1:
+            solveSudokuCase()
+        elif usr_input == 2:
+            generateNewBoardCase()
+        elif usr_input == 3:
+            readInstructionsCase()
+
+```
+
+## Conclusión
+
+¡Te agradezco si has llegado hasta este punto!. Ahora tenemos un programa en Python para resolver y generar tableros de Sudoku utilizando Backtracking y recursividad. Recuerda que eres libre de utilizarlo y descargarlo. Ahora mismo estoy trabajando en la integración de una interfaz gráfica y así tener un pequeño videojuego para jugar Sudoku, próximamente la estaré publicando.
