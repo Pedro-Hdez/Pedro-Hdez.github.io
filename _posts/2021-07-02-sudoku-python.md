@@ -307,7 +307,7 @@ Estos dos argumentos son vitales para cuando se genera un tablero nuevo, más ad
 
 El algoritmo es muy simple, primero toma el arreglo bidimensional que representa al tablero, puede ser el que se proporcionó en el parámetro `board` o el atributo `self.board`. Una vez seleccionado el tablero, éste se recorre en orden con dos ciclos For anidados. Dentro de este par de ciclos se revisa si la posición actual es una casilla vacía (representada por un cero). S es así, entonces se decide si se regresa o no la posición actual de acuerdo al parámetro `emptySpace`. Recordemos que dicho parámetro representa el n-ésimo espacio vacío, en caso de que `emptySpace != None`, debemos continuar con la búsqueda hasta que sea necesario. Si al final recorrimos todo el tablero y no encontramos espacios vacíos, entonces se regresa un `None`
 
-### Método para revisar que las reglas del Sudoku
+#### Método para revisar que las reglas del Sudoku se cumplan
 
 Ya sabemos cómo buscar una casilla vacía, ahora necesitamos un método para revisar que ninguna regla del juego se rompa cuando asignemos un valor al espacio vacío que encontremos.
 
@@ -360,3 +360,243 @@ El algoritmo es muy intuitivo, se revisan las tres reglas del Sudoku tal y como 
 - `space`: Tupla que contiene la posición del espacio vacío.
 
 El primer ciclo For revisa que el número que queremos asignar no exista previamente en la columna correspondiente al espacio vacío. El segundo ciclo revisa que el número no se repita en el renglón donde el espacio vacío se encuentra. El resto del código se encarga de ubicar el cuadrado interno al que pertenece la casilla vacía, luego ese cuadrado interno se revisa completamente con dos ciclos For anidados para asegurarnos de que el número no se repite dentro de él. Si alguna regla se rompe, se regresa un `False`, pero si terminamos de revisar todas las reglas sin ningún problema, entonces se regresa un `True`.
+
+#### Método para resolver un Sudoku
+
+Aquí es donde la magia sucede. El siguiente método utiliza la recursividad y el Backtracking para resolver un tablero de Sudoku:
+
+```python
+    def solve(self, initialCell=None):
+        """
+            This method implements a recursive BackTracking algorithm to solve
+            the Sudoku Board.
+
+            Params
+            ------
+            - initialCell: None by default. It expects a <tuple> object with (row, col) coordinates
+                           of an empty space. If this parameter is given, then the board will begin
+                           to be solved from the corresponding initial cell. If this parameter is
+                           not given, the board will begin to be solved from the firs empty space
+                           the algorithm find.
+
+            Returns
+            -------
+            - True if the board could be solved.
+            - False is the puzzle couldn't be solved.
+        """
+
+        # To store the available space.
+        availableSpace = None
+
+        # If initialCell was given, availableSpace = initialCell. Else, the algorithm will
+        # search an available space
+        if not initialCell:
+            # Checking if there are empty spaces. If no empty spaces remains, then return True beacuse
+            # it was possible to solve the puzzle.
+            availableSpace = self.__findEmptySpace()
+            if not availableSpace:
+                return True
+        else:
+            availableSpace = initialCell
+
+        # If there are an empty space, then try to fit the space with all valid numbers (1-9)
+        # according to Sudoku rules and try to solve it from this state. If there are no solution
+        # from the current configuration, then the next valid number is tried in the current space.
+
+        # List of valid numbers (1-9)
+        validNumbers = list(range(1, 10))
+
+        # Trying all possible numbers (choosing them randomly) in the current availableSpace
+        while validNumbers:
+            n = validNumbers.pop(random.randrange(len(validNumbers)))
+            # Checking if is possible to set the number according to Sudoku rules. If we can't,
+            # then continue to the next iteration to try with the next number
+            if self.__checkRules(n, availableSpace):
+                # If we don't broke any sudoku rule setting 'n' in the availableSpace, then put the
+                # number
+                self.board[availableSpace[0]][availableSpace[1]] = n
+
+                # try to RECURSIVELY SOLVE the puzzle with the current state (with the 'n' number
+                # added in the availableScpace)
+                if self.solve():
+                    # If the puzzle could be solved, then return True
+                    return True
+
+                # if the puzzle couldn't be solved with the 'n' number added in the available space,
+                # then reset the availableSpace with 0 and continue to the next iteration; that is,
+                # try the next number that can fit in the availableSpace keeping the board solvable
+                self.board[availableSpace[0]][availableSpace[1]] = 0
+
+        # If any number (1-9) can fit in the availableSpace, then return False because the
+        # puzzle can not be solved from the current configuration
+        return False
+```
+
+El método recibe el argumento `initialCell`, éste representa la casilla desde la cuál se comenzará a resolver el Sudoku, solamente es útil al generar un tablero. Si su valor es `None`, entonces se buscará el primer espacio vacío con el método privado `self.__findEmptySpaces()` y a partir de ahí se resolverá. El caso base de este algoritmo recursivo se alcanza cuando ya no existen casillas en blanco, entonces se regresará un `True` pues ésto significa que el tablero se pudo resolver.
+
+Una vez confirmando que aún existen casillas sin resolver creamos la lista `validNumbers` que almacenará los números del 1 al 9, y mientras existan números dentro de esta variable, significa que aún tenemos valores para probar en el espacio vacío. Entonces, dentro del ciclo While, que no termina hasta que agotamos todos los valores de la lista, primero elegimos al azar un número restante y revisamos que las reglas del Sudoku no se rompan si ponemos dicho valor en el espacio vacío con la instrucción `self.__checkRules(n, availableSpace)`. Si no es posible poner `n` en el espacio vacío, entonces tomamos otro número y repetimos; en cambio, si podemos asignar el valor en la celda, utilizamos el poder de la **recursividad** para que el método se llame a sí mismo y se repita todo este procedimiento en la siguiente casilla en blanco con el objetivo de intentar resolver el tablero. Cuando ningún número desde 1 hasta 9 puede asignarse a la casilla en blanco, se regresa un `False` ya que esto significa que no es posible resolver el tablero.
+
+Ahora, el **Backtracking**. Como puede apreciarse en el código, si en algún punto alcanzamos el caso en el que no es posible resolver el tablero (el método `self.solve()` regresa un `False`), entonces la casilla en blanco a la que se le había asignado el valor `n` se resetea; es decir, su valor vuelve a ser 0 y en la siguiente iteración del ciclo While le asignaremos otro nuevo valor (si es posible) y reiniciaremos el proceso recursivo otra vez. El último If y la instrucción `self.board[availableSpace[0]][availableSpace[1]] = 0` son las que hacen posible dar marcha atrás, es decir, limpiar todas las casillas que se habían resuelto incorrectamente para dejar listo el tablero y así intentar de nuevo, recursivamente, resolver el Sudoku probando con otro número diferente en alguna casilla.
+
+### Generador de Sudokus
+
+Hasta este punto ya tenemos todo lo necesario para resolver Sudokus, sin embargo, el objetivo del proyecto también es generar tableros nuevos listos para jugar. A continuación, se explica el procedimiento a seguir.
+
+Hay que considerar que en este punto ya contamos con un programa que resuelve Sudokus entonces, ¿por qué no reutilizar todo eso?. Siguiendo esta idea haremos lo siguiente:
+
+1. Llenar parcialmente un tablero
+2. Utilizar nuestro programa para que lo resuelva
+3. Ocultar algunas casillas
+
+¡Y listo!. Estos tres sencillos pasos representan al algoritmo fundamental de nuestro generador de Sudokus; sin embargo, hay que realizar algunos ajustes para resolver un par de problemas que no son evidentes y que comento a continuación:
+
+**¿Cómo llenamos parcialmente un tablero?**
+
+Algo que podría funcionar para generar un Sudoku es darle a nuestro programa un tablero totalmente vacío y que lo resuelva. Como el método `self.solve()` elige cada vez un número de manera aleatoria, esta idea funcionaría sin problemas y nos ahorarríamos el primer paso de nuestro algoritmo; sin embargo, la cantidad de tiempo que tomaría realizar esta acción es muy, muy grande. Por ello, haremos lo siguiente.
+
+Recordando las reglas: un número no puede repetirse ni por renglón, ni por columna, ni en un mismo cuadrado interno, y es en estos últimos en donde se encuentra la clave. Si observamos bien, cada uno de los tres cuadrados internos de la diagonal del tablero es totalmente independiente de los otros dos. Esto significa que podremos llenar cada uno de esos tres cuadrados internos libremente, lo único que necesitamos cuidar es que ningún número se repita dentro del mismo cuadrado interno.
+
+<div style="text-align:center">
+    <img style="width:100%; height:100%;" src="../assets/images/sudokupython/cuadradosInternosIndependientes.png" />
+    <p><i>Figura 11. Los cuadrados en la diagonal son independientes</i></p>
+</div>
+
+Si llenamos cada uno de los tres cuadrados internos aleatoriamente, al final tendríamos que resolver únicamente 54 casillas en vez de 81. De esta forma llenamos parcialmente el tablero de una manera fácil y rápida,
+
+**¿Cómo ocultamos las casillas?**
+
+Una vez resuelto el tablero podríamos pensar que basta con ocultar aleatoriamente algunas casillas, pero esto no es tan fácil. Si comenzamos a borrar valores sin cuidado podríamos obtener como resultado un tablero con muchas posibles soluciones y eso es un pequeño problema para nosotros; es deseable obtener siempre tableros con solución única para juzgarlos como correctos o incorrectos y evitar caer en ambigüedades. ¿Por qué pasa ésto? bueno, el Sudoku puede resolverse iniciando desde cualquier casilla vacía y, en un tablero con múltiples respuestas, la solución a la que lleguemos dependerá de la casilla que resolvamos primero. Entonces debemos cuidar que la solución del Sudoku sea siempre la misma al momento de limpiar espacios.
+
+Habiendo resuelto estos pequeños inconvenientes, podemos traducir nuestro algoritmo de generación de Sudokus a Python.
+
+#### Método para generar un tablero resuelto
+
+```python
+    def __generateFullBoard(self):
+        """
+            This method generates a new random and filled Sudoku board following the rules of the
+            game.
+        """
+        # Populate the board with 0's|
+        self.__resetBoard()
+
+        # Populate the three diagonal boxes
+
+        # As we know, every diagonal box is independent from the other two diagonal boxes,
+        # so we can fill each of them independently only checking that each number (1-9) only
+        # exists once in each box.
+
+        # For loop to iterate the three boxes
+        for i in range(1,4):
+            # As the boxes are diagonal, then (x,y) coordinates for their first and last cells will
+            # be equals.
+
+            # Getting the begin coordinate of the box
+            boxBegin = 3*(i-1)
+            # Getting the end coordinate of the box
+            boxEnd = 3*i
+            # List with the valid numbers
+            validNumbers = list(range(1, 10))
+            # Iterate the box
+            for row in range(boxBegin, boxEnd):
+                for col in range(boxBegin, boxEnd):
+                    # Assign a random valid number. To assure that every single number will exist
+                    # only once in the box, it is removed when it is selected.
+                    self.board[row][col] = validNumbers.pop(random.randrange(len(validNumbers)))
+
+        # Populate the rest of the cells solving the board
+        self.solve()
+```
+
+Comenzamos por crear un tablero vacío con el método `self.__resetBoard()`. Después hay que rellenar los tres cuadrados internos diagonales. Es evidente que este procedimiento aleatorio es siempre el mismo, lo único que cambia son las coordenadas de inicio y fin de los cuadrados, por esta razón utilizamos un ciclo For para repetir el llenado aleatorio. Al final, simplemente llamamos al método `self.solve()` para que el programa mismo rellene correctamente las casillas restantes.
+
+#### Método para obtener todas las soluciones de un tablero
+
+```python
+    def __findNumberOfSolutions(self):
+        """
+            This method finds the number of solutions a non-completely filled board has.
+
+            Returns
+            -------
+            - List of <str> objects with length 81. Each of them represents a different
+              solution.
+        """
+
+        # Integer to store the number of empty spaces
+        numberOfEmptySpaces = 0
+        # List to store the solutions.
+        list_of_solutions = []
+
+        # Nested for loops to count the number of empty spaces in the board
+        for row in range(len(self.board)):
+            for col in range(len(self.board)):
+                if self.board[row][col] == 0:
+                    numberOfEmptySpaces += 1
+
+        # For loop to begin to solve the board from every single empty space found
+        for i in range(numberOfEmptySpaces):
+            # Copy of the original board
+            board_copy = copy.deepcopy(self)
+            # Getting the current empty space
+            row, col = self.__findEmptySpace(board=board_copy, emptySpace=i)
+            # Solving the puzzle from the current empty space
+            board_copy.solve(initialCell=(row, col))
+            # Storing the current solution
+            list_of_solutions.append(board_copy.boardAsString())
+
+        # Return the number of unique solutions
+        return list(set(list_of_solutions))
+```
+
+Este método nos auxiliará al momento de ocultar casillas para asegurarnos de que el tablero siempre tendrá solución única. El primer par de ciclos For anidados es para contar el número de espacios vacíos que tiene el tablero, de esta forma podremos identificar a cada uno de ellos. Dentro del último ciclo For resolveremos el mismo tablero pero partiendo desde un espacio vacío diferente a la vez. Estas soluciones se almacenarán en la variable auxiliar `list_of_solutions`.
+
+Nótese que en esta ocasión si utlizamos los parámetros `board` y `emptySpace` del método `self.__findEmptySpace()`; además, estamos utilizando el método básico `boardAsString()` para convertir las soluciones en cadenas de caracteres.
+
+#### Método para generar un tablero para jugar Sudoku
+
+```python
+    def generateGameBoard(self, emptySpaces=0):
+        """
+            This method generates a game board; that is, a partially filled Sudoku board
+            with just one solution.
+
+            Params
+            ------
+            - emptySpaces: <int> which represents the number of empty spaces the board will have.
+                           By default, 0.
+
+            Returns
+            -------
+            - Two <SudokuBoard> objects. The first one containing the
+              solved board; the last one is the partially filled board.
+        """
+        # Generating the full board and storing it
+        self.__generateFullBoard()
+        fullBoard = copy.deepcopy(self)
+
+        # We erase "emptySpaces" number of cells randomly always checking that
+        # the number of solutions is 1.
+        emptiedCells = 0
+        while emptiedCells < emptySpaces:
+            row = random.randint(0, 8)
+            col = random.randint(0, 8)
+
+            if self.board[row][col] != 0:
+                n = self.board[row][col]
+                self.board[row][col] = 0
+
+                if len(self.__findNumberOfSolutions()) != 1:
+                    self.board[row][col] = n
+                    continue
+
+                emptiedCells += 1
+
+        # returns the solved board and the unsolved board
+        if emptySpaces > 0:
+            return fullBoard, self
+
+        return self, None
+```
+
+Este es el método principal que nos permitirá generar tableros de juego. Recibe el parámetro `emptySpaces` que representa el número de casillas a esconder. Primero, generamos un tablero completamente lleno y lo copiamos a una variable que manipularemos sin alterar el Sudoku original. Después, dentro del ciclo While seleccionamos aleatoriamente una casilla y se valida que no sea un espacio vacío. Luego, borramos el valor de la casilla y llamamos al método `self.__findNumberOfSolutions()` para resolver el tablero desde cada espacio vacío existente hasta el momento. Si el número de soluciones es diferente de 1, significa que, si borramos la casilla actual, el Sudoku dejará de tener solución única, por esta razón volvemos a asignarle su valor original. El procedimiento se repite hasta que borremos el número deseado de casillas. Al final se regresará el tablero resuelto y el de juego.
