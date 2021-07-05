@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Generador y solucionador de Sudokus
-autor: pedro
+author: pedro
 portada: "../assets/images/portadas/python_proyecto_es.png"
 image: assets/images/sudokupython/portada.jpg
 categories: [Python, Inteligencia Artificial]

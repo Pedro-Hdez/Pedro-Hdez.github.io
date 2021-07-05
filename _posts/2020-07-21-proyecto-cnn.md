@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Superresolución de imágenes
-autor: pedro
+author: pedro
 portada: "../assets/images/portadas/redes_neuronales_es.png"
 categories: [Redes Neuronales]
 description: "Proyecto final de la materia de Redes Neuronales en donde se implementa una red neuronal convolucional para aumentar la resolución de imágenes degradadas."

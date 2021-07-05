@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "La historia de los videojuegos resumida en sus ventas"
-autor: pedro
+author: pedro
 portada: "../assets/images/portadas/historiavideojuegos_es.png"
 image: assets/images/historiavideojuegos/historiavideojuegos.png
 categories: [Ciencia de datos, R]
