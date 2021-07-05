@@ -14,7 +14,7 @@ toc: true
 
 La industria de los videojuegos es una de las más rentables a nivel mundial; de hecho, en el 2020 los juegos de video generaron en Estados Unidos más dinero que el cine y los deportes juntos. Estos productos que en un principio se veían como artículos para niños cada vez adquiere audiencias más diversas y, por lo tanto, genera mayores ingresos ¡y muchos datos!.
 
-En esta investigación se ha realizado un análisis exploratorio del conjunto de datos [vgsales](https://www.kaggle.com/joshuadottavio/videogamesales) que contiene información acerca de la venta de videojuegos desde el año 1980 hasta el 2020. Se mostrará el código en el lenguaje para que puedas reproducirlo tú mismo.
+En esta investigación se ha realizado un análisis exploratorio del conjunto de datos [vgsales](https://www.kaggle.com/joshuadottavio/videogamesales) que contiene información acerca de la venta de videojuegos desde el año 1980 hasta el 2020. Se mostrará el código para que puedas reproducirlo tú mismo.
 
 ## Objetivos
 
@@ -30,7 +30,9 @@ Luego, desde RStudio debes elegir la carpeta en donde se encuentra el conjunto d
 
 Finalmente, debes crear un nuevo script en el directorio de trabajo y ejecutar las instrucciones que se muestran a continuación.
 
-**NOTA** Por default, Rstudio ajusta automáticamente las dimensiones de las gráficas. En este trabajo la gran mayoría de las imágenes generadas son muy grandes; por este motivo, justo después de crear cada gráfica se va a guardar en el directorio de trabajo con dimensiones predefinidas por mí, te prometo que se veran geniales. En este [repositorio]() se encuentra el proyecto completo. Los reportes en pdf y HTML ya contienen las gráficas con las dimensiones predefinidas incluídas, éstos se generan con el archivo .Rmd.
+**NOTA**
+
+Por default, Rstudio ajusta automáticamente las dimensiones de las gráficas. En este trabajo la gran mayoría de las imágenes generadas son muy grandes; por este motivo, justo después de crear cada gráfica se va a guardar en el directorio de trabajo con dimensiones predefinidas por mí, te prometo que se veran geniales. En este [repositorio]() se encuentra el proyecto completo. Los reportes en pdf y HTML ya contienen las gráficas con las dimensiones predefinidas incluídas, éstos se generan con el archivo .Rmd.
 
 ## Análisis exploratorio
 
